@@ -1,8 +1,10 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
-import { toast } from "sonner";
+import { toast, Toaster } from "sonner";
 import Divisions from "../../../public/locals/division.json";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import axios from "axios";
+import { AuthContext } from "../../Provider/authProvider";
 
 export default function SignUp() {
   const [division, setDivision] = useState("");
@@ -11,7 +13,8 @@ export default function SignUp() {
 
   const [districts, setDistricts] = useState([]);
   const [upazilas, setUpazilas] = useState([]);
-  //
+  const baseUrl = import.meta.env.BackendURL;
+  const { signUp } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -23,10 +26,28 @@ export default function SignUp() {
 
   const password = watch("password", "");
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     // setSelectedDivision(data.division);
     console.log(data);
-    toast.success("Account created successfully!");
+
+    try {
+      const res = await signUp(
+        data.firstName,
+        data.lastName,
+        data.email,
+        data.phone,
+        data.address,
+        data.division,
+        data.postCode,
+        data.password
+      );
+      // const data = res.data
+      console.log(res);
+          toast.success("Account created successfully!");
+    } catch (error) {
+      console.log(error);
+          toast.error("Account created successfully!");
+    }
   };
 
   // working with api
@@ -58,6 +79,7 @@ export default function SignUp() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-[#EDFAF9] p-4">
+      <Toaster richColors  />
       {/* Logo + Title */}
       <div className="mr-5 p-5 flex flex-col items-center justify-center gap-3">
         <p>
