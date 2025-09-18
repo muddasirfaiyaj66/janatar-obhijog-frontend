@@ -4,7 +4,7 @@ import Home from "../pages/Home/Home";
 import SignUp from "../pages/Authentication/SignUp";
 import SignIn from "../pages/Authentication/Signin";
 import ErrorPage from "../pages/ErrorPage";
-import AuthLayOut from "../layout/AuthLayout";
+
 
 const AppRoutes = () => (
   <Routes>
