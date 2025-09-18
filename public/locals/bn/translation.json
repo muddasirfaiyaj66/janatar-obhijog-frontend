@@ -1,0 +1,13 @@
+{
+  "header": {
+    "Headerwelcome": "স্বাগতম!"
+  },
+  "welcome": "স্বাগতম, {{name}}!",
+  "description": "জনতার অভিযোগ — সহজে নাগরিক সমস্যা রিপোর্ট করুন।",
+  "items_one": "আপনার আছে {{count}} টি আইটেম",
+  "items_other": "আপনার আছে {{count}} টি আইটেম",
+  "richText": "চলুন <strong>এখানে</strong> ক্লিক করে চালিয়ে যান।",
+  "language":{
+    "lang":"বাংলা"
+  }
+} 
