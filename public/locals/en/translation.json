@@ -1,0 +1,13 @@
+{
+  "header": {
+    "Headerwelcome": "Welcome!"
+  },
+  "welcome": "Welcome, {{name}}!",
+  "description": "Janatar Obhijog — report civic issues easily.",
+  "items_one": "You have {{count}} item",
+  "items_other": "You have {{count}} items",
+  "richText": "Click <strong>here</strong> to continue.",
+  "language":{
+    "lang":"English"
+  }
+}
