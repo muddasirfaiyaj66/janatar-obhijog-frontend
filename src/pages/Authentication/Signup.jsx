@@ -1,17 +1,23 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
-import { toast } from "sonner";
+import { Link, useNavigate } from "react-router";
+import { toast, Toaster } from "sonner";
 import Divisions from "../../../public/locals/division.json";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+
+import { AuthContext } from "../../Provider/authProvider";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 export default function SignUp() {
+  const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
   const [division, setDivision] = useState("");
   const [district, setDistrict] = useState("");
   const [upazila, setUpazila] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [districts, setDistricts] = useState([]);
   const [upazilas, setUpazilas] = useState([]);
-  //
+  const { signUp, user } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -23,27 +29,98 @@ export default function SignUp() {
 
   const password = watch("password", "");
 
-  const onSubmit = (data) => {
-    // setSelectedDivision(data.division);
-    console.log(data);
-    toast.success("Account created successfully!");
+  const onSubmit = async (data) => {
+    setIsSubmitting(true);
+    console.log("Form data:", data);
+    console.log("Additional state - district:", district, "upazila:", upazila);
+
+    // Validate required state fields
+    if (!district) {
+      toast.error("Please select a district");
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!upazila) {
+      toast.error("Please select a thana/upazila");
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      // Prepare the signup data with all required fields
+      const signupData = {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        phone: data.phone,
+        address: data.address,
+        division: data.division,
+        district: district, // from state
+        thana: upazila, // from state (backend expects 'thana')
+        postCode: data.postCode,
+        password: data.password,
+
+      };
+
+      console.log("Sending signup data:", signupData);
+      const res = await signUp(signupData);
+      console.log("Signup response:", res);
+
+      // Check if user was automatically logged in based on the response structure
+      if (res && res.success && res.data && res.data.user && res.data.accessToken) {
+        console.log("User automatically logged in:", res.data.user);
+        toast.success(`Welcome ${res.data.user.firstName}! Account created and logged in successfully!`);
+      } else if (res && res.success) {
+        toast.success("Account created successfully! Please sign in.");
+      } else {
+        toast.success("Account created successfully!");
+      }
+
+      // Redirect to dashboard if logged in, otherwise to home
+      setTimeout(() => {
+        if (res && res.data && res.data.accessToken) {
+          navigate("/dashboard");
+        } else {
+          navigate("/");
+        }
+      }, 2000);
+
+    } catch (error) {
+      console.log(error);
+      const errorMessage = error.response?.data?.message || "Failed to create account. Please try again.";
+      toast.error(errorMessage);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
+  // Redirect if user is already logged in
+  useEffect(() => {
+    if (user) {
+      console.log("User already logged in, redirecting to home");
+      navigate("/");
+    }
+  }, [user, navigate]);
 
   // working with api
   // fetch districts when division changes
   useEffect(() => {
     if (division) {
-      fetch(`https://bdapis.com/api/v1.2/division/${division}`)
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          setDistricts(data?.data || []);
+      axiosPublic.get(`https://bdapis.com/api/v1.2/division/${division}`)
+        .then((res) => {
+          console.log(res.data);
+          setDistricts(res.data?.data || []);
           setDistrict(""); // reset district
           setUpazilas([]); // reset upazilas
           setUpazila(""); // reset upazila
+        })
+        .catch((error) => {
+          console.error("Error fetching districts:", error);
+          toast.error("Failed to load districts");
         });
     }
-  }, [division]);
+  }, [division, axiosPublic]);
 
   // set upazilas when district changes
   useEffect(() => {
@@ -58,6 +135,7 @@ export default function SignUp() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-[#EDFAF9] p-4">
+      <Toaster richColors />
       {/* Logo + Title */}
       <div className="mr-5 p-5 flex flex-col items-center justify-center gap-3">
         <p>
@@ -206,7 +284,7 @@ export default function SignUp() {
                   validate: (value) =>
                     value === password || "Passwords do not match",
                 })}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-green-500 focus:border-green-500 transition-colors duration-300"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"
               />
               {errors.confirmPassword && (
                 <p className="mt-1 text-sm text-red-600">
@@ -262,13 +340,14 @@ export default function SignUp() {
             {/* district */}
             <div>
               <label className="block text-sm font-medium text-gray-700">
-                District
+                District <span className="text-red-500">*</span>
               </label>
               <select
                 value={district}
                 onChange={(e) => setDistrict(e.target.value)}
                 disabled={!districts.length}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"
+                className={`mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 ${!district && districts.length > 0 ? 'border-red-300' : 'border-gray-300'
+                  }`}
               >
                 <option value="">Select District</option>
                 {districts.map((dist) => (
@@ -277,9 +356,9 @@ export default function SignUp() {
                   </option>
                 ))}
               </select>
-              {errors.district && (
+              {!district && districts.length > 0 && (
                 <p className="mt-1 text-sm text-red-600">
-                  {errors.district.message}
+                  District is required
                 </p>
               )}
             </div>
@@ -289,13 +368,14 @@ export default function SignUp() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700">
-                Thana/Upazila
+                Thana/Upazila <span className="text-red-500">*</span>
               </label>
               <select
                 value={upazila}
                 onChange={(e) => setUpazila(e.target.value)}
                 disabled={!upazilas.length}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"
+                className={`mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 ${!upazila && upazilas.length > 0 ? 'border-red-300' : 'border-gray-300'
+                  }`}
               >
                 <option value="">Select Upazila</option>
                 {upazilas.map((upa) => (
@@ -304,9 +384,9 @@ export default function SignUp() {
                   </option>
                 ))}
               </select>
-              {errors.thana && (
+              {!upazila && upazilas.length > 0 && (
                 <p className="mt-1 text-sm text-red-600">
-                  {errors.thana.message}
+                  Thana/Upazila is required
                 </p>
               )}
             </div>
@@ -332,9 +412,13 @@ export default function SignUp() {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-300"
+            disabled={isSubmitting}
+            className={`w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white ${isSubmitting
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-green-600 hover:bg-green-700"
+              } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500`}
           >
-            {t("auth.signup.signUpButton")}
+            {isSubmitting ? "Creating Account..." : "Create Account"}
           </button>
         </form>
 
