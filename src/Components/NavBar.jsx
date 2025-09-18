@@ -79,7 +79,7 @@ const NavBar = () => {
               <Globe className="h-4 w-4" />
               <span className="text-base">English</span>
             </button>
-            <Link to={"auth/signin"}>
+            <Link to={"/signin"}>
               <button
              
                 className="px-5 py-2 text-base font-semibold text-gray-700 bg-gray-100 rounded-lg shadow-sm hover:bg-gray-200 transition-colors"
@@ -88,7 +88,7 @@ const NavBar = () => {
               </button>
             </Link>
 
-            <Link to={"/auth/signUp"}>
+            <Link to={"/signup"}>
               <button className="px-5 py-2 text-base font-semibold text-white bg-green-600 rounded-lg shadow-sm hover:bg-green-700 transition-colors">
                 শুরু করুন
               </button>
@@ -125,12 +125,12 @@ const NavBar = () => {
               variants={mobileMenuVariants}
             >
               <div className="bg-gray-50 px-2 pt-2 pb-3 space-y-2">
-                <Link to={'/auth/signIn'}>
+                <Link to={'/signIn'}>
                   <button className="w-full px-5 py-2 text-base font-semibold text-gray-700 bg-gray-100 rounded-lg shadow-sm hover:bg-gray-200 transition-colors">
                     লগইন করুন
                   </button>
                 </Link>
-                <Link to={'/auth/signUp'}>
+                <Link to={'/signUp'}>
                   <button className="w-full px-5 py-2 text-base font-semibold text-white bg-green-600 rounded-lg shadow-sm hover:bg-green-700 transition-colors">
                     শুরু করুন
                   </button>
