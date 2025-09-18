@@ -1,1 +1,68 @@
 @import "tailwindcss";
+
+/* Dark mode configuration */
+@media (prefers-color-scheme: dark) {
+    html.dark {
+        color-scheme: dark;
+    }
+}
+
+/* Custom CSS variables for theme consistency */
+:root {
+    --color-primary: #10b981;
+    --color-primary-dark: #059669;
+    --color-secondary: #6b7280;
+    --color-accent: #3b82f6;
+}
+
+html.dark {
+    --color-primary: #10b981;
+    --color-primary-dark: #34d399;
+    --color-secondary: #9ca3af;
+    --color-accent: #60a5fa;
+}
+
+/* Smooth transitions for theme changes */
+* {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+}
+
+/* Custom scrollbar for better consistency */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 4px;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+    background: #4b5563;
+}
+
+/* Font optimization for Bengali text */
+html[lang="bn"] {
+    font-family: 'Noto Sans Bengali', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html[lang="en"] {
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Ticker animation for scrolling text */
+@keyframes tickerAnimation {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
