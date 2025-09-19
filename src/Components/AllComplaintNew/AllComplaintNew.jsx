@@ -88,7 +88,7 @@ const AllComplaintNew = ({ user }) => {
                       : "text-gray-600"
                   }`}
                 >
-                  {complaint.priority}
+                  {complaint.priority}  
                 </span>
               </p>
               <p>
