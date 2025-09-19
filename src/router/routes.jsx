@@ -10,7 +10,21 @@ import Home from "../pages/Home/Home/Home";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import PrivateRoute from "./privateRoute";
 import DashbordLayout from "../layout/DashbordLayout";
-import MyComplaints from '../pages/User/MyComplaints'
+
+import MyComplaints from "../pages/User/MyComplaints";
+import SubmitedComplaints from "../pages/User/SubmitComplaint";
+import Gems from "../pages/User/Gems";
+
+import AllComplaints from  "../pages/Admin/Complaints";
+import Analytics from "../pages/Admin/Analytics";
+
+import AllComplaintsSuperAdmin from "../pages/SuperAdmin/AllComplaints";
+import UserManagement from "../pages/SuperAdmin/UserManagement";
+import AuthManagement from "../pages/SuperAdmin/AuthorityManagement";
+
+
+
+
 const AppRoutes = () => (
   <Routes>
     <Route path="/" element={<Main />}>
@@ -32,15 +46,24 @@ const AppRoutes = () => (
         </PrivateRoute>
       }
     >
-      <Route index  path="home" element={<Dashboard></Dashboard>}></Route>
-      {/* user routes */}
-      <Route   path="myComplaints" element={<MyComplaints></MyComplaints>}></Route>
-      <Route   path="submitedComplaints" element={<Dashboard></Dashboard>}></Route>
-      {/* Admin route 
-      <Route   path="home" element={<Dashboard></Dashboard>}></Route>
-      <Route   path="home" element={<Dashboard></Dashboard>}></Route>
-      <Route   path="home" element={<Dashboard></Dashboard>}></Route>
-      <Route   path="home" element={<Dashboard></Dashboard>}></Route> */}
+      <Route index element={<Dashboard></Dashboard>}></Route>
+      {/* -------- USER ROUTES -------- */}
+      <Route path="myComplaints" element={<MyComplaints />} />
+      <Route path="submitedcomplaints" element={<SubmitedComplaints />} />
+      <Route path="gems" element={<Gems />} />
+
+      {/* -------- ADMIN ROUTES -------- */}
+      <Route path="allComplaints" element={<AllComplaints />} />
+      <Route path="analytics" element={<Analytics />} />
+
+      {/* -------- SUPER ADMIN ROUTES -------- */}
+      <Route
+        path="allComplaintsSuperAdmin"
+        element={<AllComplaintsSuperAdmin />}
+      />
+      <Route path="users" element={<UserManagement />} />
+      <Route path="authManagement" element={<AuthManagement />} />
+
     </Route>
 
     {/* Admin Only Routes */}
