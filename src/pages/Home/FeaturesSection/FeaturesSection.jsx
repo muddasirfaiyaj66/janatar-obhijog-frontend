@@ -1,175 +1,230 @@
-import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
+import { Target, MapPin, Bell, BarChart3, Globe, Trophy, Zap, TrendingUp, Users, Building } from "lucide-react";
 
 const FeaturesSection = () => {
-  const { t } = useTranslation();
-
   const features = [
     {
-      icon: "🎯",
-      title: t("home.features.smartAIRouting"),
-      description: t("home.features.smartAIRoutingDesc"),
+      icon: Target,
+      title: "Smart AI Routing",
+      description: "Intelligent complaint routing system that automatically directs issues to the appropriate department using advanced AI algorithms.",
       highlight: "AI-Powered",
     },
     {
-      icon: "📍",
-      title: t("home.features.locationBasedReporting"),
-      description: t("home.features.locationBasedReportingDesc"),
+      icon: MapPin,
+      title: "Location-Based Reporting",
+      description: "GPS-enabled reporting system that pinpoints exact locations and provides relevant context for faster resolution.",
       highlight: "GPS Enabled",
     },
     {
-      icon: "🔔",
-      title: t("home.features.realTimeNotifications"),
-      description: t("home.features.realTimeNotificationsDesc"),
+      icon: Bell,
+      title: "Real-Time Notifications",
+      description: "Instant updates on complaint status, progress tracking, and resolution notifications delivered directly to your device.",
       highlight: "Instant Updates",
     },
     {
-      icon: "📊",
-      title: t("home.features.progressTracking"),
-      description: t("home.features.progressTrackingDesc"),
+      icon: BarChart3,
+      title: "Progress Tracking",
+      description: "Complete transparency with detailed progress tracking, timeline updates, and resolution status monitoring.",
       highlight: "Full Transparency",
     },
     {
-      icon: "🌐",
-      title: t("home.features.multiLanguageSupport"),
-      description: t("home.features.multiLanguageSupportDesc"),
+      icon: Globe,
+      title: "Multi-Language Support",
+      description: "Seamless communication in both Bengali and English with automatic translation and localized support.",
       highlight: "Bilingual",
     },
     {
-      icon: "🏆",
-      title: t("home.features.rewardSystem"),
-      description: t("home.features.rewardSystemDesc"),
+      icon: Trophy,
+      title: "Reward System",
+      description: "Gamified experience that rewards active community participation and encourages civic engagement.",
       highlight: "Gamified",
     },
-  ]
+  ];
+
+  const stats = [
+    {
+      icon: Zap,
+      number: "2.5x",
+      label: "Faster Resolution",
+    },
+    {
+      icon: TrendingUp,
+      number: "95%",
+      label: "Success Rate",
+    },
+    {
+      icon: Users,
+      number: "50K+",
+      label: "Active Users",
+    },
+    {
+      icon: Building,
+      number: "200+",
+      label: "Partner Departments",
+    },
+  ];
+
+  // Animation variants
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" }
+    }
+  };
+
+  const stagger = {
+    visible: {
+      transition: { staggerChildren: 0.1 }
+    }
+  };
 
   return (
-    <section className="theme-bg-primary py-24 relative">
-      <div style={styles.container}>
-        <div style={styles.header}>
-          <h2 className="text-4xl md:text-5xl font-extrabold theme-text-primary mb-5 leading-tight">
-            {t("home.features.title")}
+    <section className="theme-bg-secondary py-24 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <motion.div 
+          className="text-center mb-20"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+        >
+          <h2 className="mb-6">
+            <span className="block text-4xl lg:text-5xl font-black theme-text-primary mb-3 leading-tight">
+              Powerful Features
+            </span>
+            <span className="block text-xl lg:text-2xl font-bold theme-text-secondary leading-relaxed">
+              Built for Modern Governance
+            </span>
           </h2>
-          <p className="text-xl theme-text-secondary leading-relaxed max-w-3xl mx-auto">
-            {t("home.features.subtitle")}
+          <p className="text-xl theme-text-secondary leading-relaxed max-w-4xl mx-auto">
+            Experience cutting-edge technology designed to streamline civic engagement and ensure efficient resolution of community issues.
           </p>
-        </div>
+        </motion.div>
 
-        <div style={styles.featuresGrid}>
-          {features.map((feature, index) => (
-            <div key={index} className="theme-card rounded-3xl p-8 transition-all duration-300 hover:transform hover:scale-105 relative overflow-hidden">
-              <div style={styles.cardHeader}>
-                <div className="w-16 h-16 bg-blue-50 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center">
-                  <span className="text-3xl">{feature.icon}</span>
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 mb-24"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={stagger}
+        >
+          {features.map((feature, index) => {
+            const IconComponent = feature.icon;
+            return (
+              <motion.div 
+                key={index} 
+                className="theme-card rounded-2xl p-8 relative overflow-hidden group cursor-pointer transition-all duration-300 hover:shadow-2xl"
+                variants={fadeInUp}
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
+                {/* Glow effect on hover */}
+                <div className="absolute inset-0 bg-gradient-radial from-red-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                <div className="flex justify-between items-center mb-6 relative z-10">
+                  <div className="w-16 h-16 bg-green-600 dark:bg-green-600 rounded-2xl flex items-center justify-center shadow-lg">
+                    <IconComponent size={28} className="text-white" />
+                  </div>
+                  <span className="bg-red-600 dark:bg-red-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+                    {feature.highlight}
+                  </span>
                 </div>
-                <span className="bg-blue-600 dark:bg-blue-500 text-white py-1 px-3 rounded-full text-sm font-semibold">
-                  {feature.highlight}
-                </span>
-              </div>
-              <h3 className="text-xl font-bold theme-text-primary mb-3">{feature.title}</h3>
-              <p className="theme-text-secondary leading-relaxed mb-6">{feature.description}</p>
-              <div style={styles.cardFooter}>
-                <button className="text-blue-600 dark:text-blue-400 font-semibold hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-300">
-                  {t("home.features.learnMore")} →
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
+                
+                <h3 className="text-xl font-bold theme-text-primary mb-4 leading-tight">
+                  {feature.title}
+                </h3>
+                
+                <p className="theme-text-secondary leading-relaxed mb-6 text-base">
+                  {feature.description}
+                </p>
+                
+                <div className="flex justify-start relative z-10">
+                  <motion.button 
+                    className="text-gray-600 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 font-semibold transition-colors duration-200 bg-transparent border-none cursor-pointer p-0"
+                    whileHover={{ x: 5 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    Learn More →
+                  </motion.button>
+                </div>
+              </motion.div>
+            );
+          })}
+        </motion.div>
 
-        <div className="theme-bg-secondary rounded-3xl p-16 mt-10">
-          <div style={styles.statsContainer}>
-            <div style={styles.statCard}>
-              <div className="text-4xl w-18 h-18 theme-bg-primary rounded-full flex items-center justify-center theme-shadow-md flex-shrink-0">
-                ⚡
-              </div>
-              <div style={styles.statContent}>
-                <span className="text-4xl font-extrabold theme-text-primary leading-none">2.5x</span>
-                <span className="text-base theme-text-secondary mt-1 font-medium">
-                  {t("home.features.stats.fasterResolution")}
-                </span>
-              </div>
-            </div>
-            <div style={styles.statCard}>
-              <div className="text-4xl w-18 h-18 theme-bg-primary rounded-full flex items-center justify-center theme-shadow-md flex-shrink-0">
-                📈
-              </div>
-              <div style={styles.statContent}>
-                <span className="text-4xl font-extrabold theme-text-primary leading-none">95%</span>
-                <span className="text-base theme-text-secondary mt-1 font-medium">
-                  {t("home.features.stats.successRate")}
-                </span>
-              </div>
-            </div>
-            <div style={styles.statCard}>
-              <div className="text-4xl w-18 h-18 theme-bg-primary rounded-full flex items-center justify-center theme-shadow-md flex-shrink-0">
-                👥
-              </div>
-              <div style={styles.statContent}>
-                <span className="text-4xl font-extrabold theme-text-primary leading-none">50K+</span>
-                <span className="text-base theme-text-secondary mt-1 font-medium">
-                  {t("home.features.stats.activeUsers")}
-                </span>
-              </div>
-            </div>
-            <div style={styles.statCard}>
-              <div className="text-4xl w-18 h-18 theme-bg-primary rounded-full flex items-center justify-center theme-shadow-md flex-shrink-0">
-                🏛️
-              </div>
-              <div style={styles.statContent}>
-                <span className="text-4xl font-extrabold theme-text-primary leading-none">200+</span>
-                <span className="text-base theme-text-secondary mt-1 font-medium">
-                  {t("home.features.stats.partnerDepartments")}
-                </span>
-              </div>
-            </div>
+        <motion.div 
+          className="theme-card rounded-3xl p-12 border border-gray-200 dark:border-slate-700"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {stats.map((stat, index) => {
+              const IconComponent = stat.icon;
+              return (
+                <motion.div 
+                  key={index} 
+                  className="flex items-center gap-4 p-4 bg-gray-500 dark:bg-slate-600 rounded-2xl border border-gray-200 dark:border-slate-700 transition-all duration-300 hover:shadow-lg group cursor-pointer"
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="w-16 h-16 bg-white dark:bg-slate-500 rounded-2xl flex items-center justify-center shadow-lg border border-gray-200 dark:border-slate-500 group-hover:shadow-xl transition-shadow duration-300">
+                    <IconComponent size={24} className="text-green-600 dark:text-green-500" />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-3xl font-black theme-text-primary leading-none mb-1">
+                      {stat.number}
+                    </span>
+                    <span className="text-sm font-semibold theme-text-secondary leading-tight">
+                      {stat.label}
+                    </span>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-const styles = {
-  container: {
-    maxWidth: "1200px",
-    margin: "0 auto",
-    padding: "0 20px",
-  },
-  header: {
-    textAlign: "center",
-    marginBottom: "80px",
-  },
-  featuresGrid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))",
-    gap: "30px",
-    marginBottom: "80px",
-  },
-  cardHeader: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: "20px",
-  },
-  cardFooter: {
-    display: "flex",
-    justifyContent: "flex-start",
-  },
-  statsContainer: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-    gap: "40px",
-  },
-  statCard: {
-    display: "flex",
-    alignItems: "center",
-    gap: "16px",
-    textAlign: "left",
-  },
-  statContent: {
-    display: "flex",
-    flexDirection: "column",
-  },
-}
+const styles = {}; // Removed inline styles as we're using Tailwind classes
 
-export default FeaturesSection
+// Add custom CSS for special effects
+const styleSheet = document.createElement("style");
+styleSheet.textContent = `
+  .bg-gradient-radial {
+    background: radial-gradient(circle, var(--tw-gradient-stops));
+  }
+  
+  @media (max-width: 768px) {
+    .grid-cols-1.md\\:grid-cols-2.xl\\:grid-cols-3 {
+      grid-template-columns: 1fr !important;
+    }
+    
+    .text-4xl.lg\\:text-5xl {
+      font-size: 2.5rem !important;
+    }
+    
+    .text-xl.lg\\:text-2xl {
+      font-size: 1.25rem !important;
+    }
+    
+    .grid-cols-1.sm\\:grid-cols-2.lg\\:grid-cols-4 {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .grid-cols-1.sm\\:grid-cols-2.lg\\:grid-cols-4 {
+      grid-template-columns: 1fr !important;
+    }
+  }
+`;
+document.head.appendChild(styleSheet);
+
+export default FeaturesSection;
