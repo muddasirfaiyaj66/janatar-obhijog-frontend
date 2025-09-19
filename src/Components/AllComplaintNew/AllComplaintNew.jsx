@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import useAxiosSecure from "../../Hooks/useAxiosSecure"; // adjust path if needed
+import useAxiosSecure from "../../hooks/useAxiosSecure"; // adjust path if needed
 
 const AllComplaintNew = ({ user }) => {
   const [complaints, setComplaints] = useState([]);
@@ -10,8 +10,9 @@ const AllComplaintNew = ({ user }) => {
     if (user?.email) {
       const fetchComplaints = async () => {
         try {
-          const res = await axiosSecure.get(`/complaints?email=${user.email}`);
-          setComplaints(res.data);
+          const res = await axiosSecure.get(`/complaints`);
+          console.log(res.data.data)
+          setComplaints(res.data.data);
         } catch (error) {
           console.error("Error fetching complaints:", error);
         } finally {
@@ -21,7 +22,7 @@ const AllComplaintNew = ({ user }) => {
       fetchComplaints();
     }
   }, [user, axiosSecure]);
-
+console.log(complaints)
   if (loading) {
     return (
       <div className="flex justify-center items-center h-64">
