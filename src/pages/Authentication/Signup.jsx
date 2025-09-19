@@ -6,6 +6,7 @@ import { useContext, useEffect, useState } from "react";
 
 import { AuthContext } from "../../Provider/authProvider";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import axios from "axios";
 
 export default function SignUp() {
   const axiosPublic = useAxiosPublic();
@@ -107,7 +108,7 @@ export default function SignUp() {
   // fetch districts when division changes
   useEffect(() => {
     if (division) {
-      axiosPublic.get(`https://bdapis.com/api/v1.2/division/${division}`)
+      axios.get(`https://bdapis.com/api/v1.2/division/${division}`)
         .then((res) => {
           console.log(res.data);
           setDistricts(res.data?.data || []);
@@ -162,7 +163,7 @@ export default function SignUp() {
           {/* First / Last Name */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium text-gray-900">
                 First Name
               </label>
               <input
@@ -171,7 +172,7 @@ export default function SignUp() {
                 {...register("firstName", {
                   required: "First Name is required",
                 })}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"
+                className="mt-1 block w-full px-3 py-2 border border-gray-100 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 bg-white"
               />
               {errors.firstName && (
                 <p className="mt-1 text-sm text-red-600">
@@ -367,7 +368,7 @@ export default function SignUp() {
           {/* Thana / PostCode */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium text-gray-950">
                 Thana/Upazila <span className="text-red-500">*</span>
               </label>
               <select
