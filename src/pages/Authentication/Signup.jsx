@@ -172,7 +172,7 @@ export default function SignUp() {
                 {...register("firstName", {
                   required: "First Name is required",
                 })}
-                className="mt-1 block w-full px-3 py-2 border border-gray-100 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 bg-white"
+                className="mt-1 block w-full px-3 py-2 border border-gray-100 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 bg-white text-black"
               />
               {errors.firstName && (
                 <p className="mt-1 text-sm text-red-600">
@@ -189,7 +189,7 @@ export default function SignUp() {
                 type="text"
                 placeholder="Enter your last name"
                 {...register("lastName", { required: "Last Name is required" })}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 text-black"
               />
               {errors.lastName && (
                 <p className="mt-1 text-sm text-red-600">
@@ -215,7 +215,7 @@ export default function SignUp() {
                     message: "Invalid email address",
                   },
                 })}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 text-black"
               />
               {errors.email && (
                 <p className="mt-1 text-sm text-red-600">
@@ -238,7 +238,7 @@ export default function SignUp() {
                     message: "Invalid phone number format",
                   },
                 })}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 text-black"
               />
               {errors.phone && (
                 <p className="mt-1 text-sm text-red-600">
@@ -264,7 +264,7 @@ export default function SignUp() {
                     message: "Password must be at least 6 characters",
                   },
                 })}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 text-black"
               />
               {errors.password && (
                 <p className="mt-1 text-sm text-red-600">
@@ -285,7 +285,7 @@ export default function SignUp() {
                   validate: (value) =>
                     value === password || "Passwords do not match",
                 })}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 text-black"
               />
               {errors.confirmPassword && (
                 <p className="mt-1 text-sm text-red-600">
@@ -304,7 +304,7 @@ export default function SignUp() {
               type="text"
               placeholder="Enter your full address"
               {...register("address", { required: "Address is required" })}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 text-black"
             />
             {errors.address && (
               <p className="mt-1 text-sm text-red-600">
@@ -323,7 +323,7 @@ export default function SignUp() {
               <select
                 {...register("division", { required: "Division is required" })}
                 onChange={(e) => setDivision(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 text-black"
               >
                 <option value="">Select Division</option>
                 {divisions.map((div) => (
@@ -347,7 +347,7 @@ export default function SignUp() {
                 value={district}
                 onChange={(e) => setDistrict(e.target.value)}
                 disabled={!districts.length}
-                className={`mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 ${!district && districts.length > 0 ? 'border-red-300' : 'border-gray-300'
+                className={`mt-1 text-black  block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 ${!district && districts.length > 0 ? 'border-red-300' : 'border-gray-300'
                   }`}
               >
                 <option value="">Select District</option>
@@ -375,7 +375,7 @@ export default function SignUp() {
                 value={upazila}
                 onChange={(e) => setUpazila(e.target.value)}
                 disabled={!upazilas.length}
-                className={`mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 ${!upazila && upazilas.length > 0 ? 'border-red-300' : 'border-gray-300'
+                className={`mt-1 text-black  block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 ${!upazila && upazilas.length > 0 ? 'border-red-300' : 'border-gray-300'
                   }`}
               >
                 <option value="">Select Upazila</option>
@@ -400,7 +400,7 @@ export default function SignUp() {
                 type="text"
                 placeholder="e.g., 1205"
                 {...register("postCode", { required: "Post Code is required" })}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"
+                className="mt-1 text-black  block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"
               />
               {errors.postCode && (
                 <p className="mt-1 text-sm text-red-600">
@@ -414,7 +414,7 @@ export default function SignUp() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white ${isSubmitting
+            className={`w-full text-black  py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white ${isSubmitting
               ? "bg-gray-400 cursor-not-allowed"
               : "bg-green-600 hover:bg-green-700"
               } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500`}

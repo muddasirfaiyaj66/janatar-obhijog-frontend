@@ -2,9 +2,12 @@ import { Outlet } from "react-router";
 import Footer from "../Components/Footer";
 import NavBar from "../Components/NavBar";
 import { useTranslation } from "react-i18next";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../Provider/authProvider";
 
 const Main = () => {
+  const {user} = useContext(AuthContext);
+  console.log(user);
   const { i18n } = useTranslation();
 
   useEffect(() => {
