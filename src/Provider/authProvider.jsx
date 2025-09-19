@@ -101,12 +101,13 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const resetPassword = async (token, newPassword) => {
+  const resetPassword = async (token, newPassword, email) => {
     setLoading(true);
     try {
       const res = await axiosPublic.post(`/auth/reset-password`, {
         token,
         newPassword,
+        email
       });
       setLoading(false);
       return res.data;
