@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Provider/authProvider';
 
 const Dashboard = () => {
@@ -91,6 +92,19 @@ const Dashboard = () => {
                                     <h4 className="font-medium text-gray-900">Help & Support</h4>
                                     <p className="text-sm text-gray-600">Get help with using the platform</p>
                                 </button>
+
+                                {/* Admin and Super Admin Only Actions */}
+                                {user.role === 'admin' || user.role === 'superAdmin' ? (
+                                    <Link
+                                        to="/ai-analysis"
+                                        className="p-4 border border-indigo-300 rounded-lg hover:bg-indigo-50 text-left bg-indigo-50"
+                                    >
+                                        <h4 className="font-medium text-indigo-900">AI Complaint Analysis</h4>
+                                        <p className="text-sm text-indigo-800">
+                                            Get intelligent insights from citizen complaints using AI tools
+                                        </p>
+                                    </Link>
+                                ) : null}
                             </div>
                         </div>
                     </div>

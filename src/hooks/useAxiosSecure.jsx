@@ -6,7 +6,7 @@ const baseURL = import.meta.env.VITE_API_BASE_URL || "https://janatar-obhijog-ba
 
 const axiosSecure = axios.create({
     baseURL,
-    timeout: 10000, // 10 seconds timeout
+    timeout: 60000, // 60 seconds timeout (increased from 10 seconds)
     headers: {
         'Content-Type': 'application/json',
     }
@@ -47,10 +47,14 @@ const useAxiosSecure = () => {
                     switch (status) {
                         case 401:
                             console.error('Unauthorized: Token expired or invalid');
-                            // Auto logout on unauthorized
-                            signOut();
-                            // Optionally redirect to login
-                            window.location.href = '/signin';
+                            // Only auto logout if this is not an auth validation request
+                            if (!error.config?.url?.includes('/users/me') &&
+                                !error.config?.url?.includes('/auth/refresh') &&
+                                !error.config?.url?.includes('/auth/login')) {
+                                signOut();
+                                // Optionally redirect to login
+                                window.location.href = '/signin';
+                            }
                             break;
                         case 403:
                             console.error('Forbidden:', data.message || 'Access denied');
