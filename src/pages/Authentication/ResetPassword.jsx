@@ -18,8 +18,9 @@ export default function ResetPassword() {
         formState: { errors },
     } = useForm();
 
-    const password = watch("password", "");
 
+    const password = watch("password", "");
+  
     const onSubmit = async (data) => {
         if (!token) {
             toast.error("Invalid reset token. Please request a new password reset.");
