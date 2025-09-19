@@ -8,25 +8,79 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const axiosPublic = useAxiosPublic();
 
-  // continuous stage change
+  // Initialize authentication state from stored token
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      axiosPublic
-        .get("/auth/me", {
+    // Function to validate and refresh token if needed
+    const validateToken = async (token) => {
+      try {
+        const response = await axiosPublic.get("/users/me", {
           headers: { Authorization: `Bearer ${token}` },
-        })
-        .then((res) => {
-          setUser(res.data.user);
-          setLoading(false);
-        })
-        .catch(() => {
-          setUser(null);
-          setLoading(false);
         });
-    } else {
-      setLoading(false);
-    }
+        return response.data;
+      } catch (error) {
+        // Try to refresh token if available
+        if (error.response?.status === 401) {
+          try {
+            const refreshResponse = await axiosPublic.post("/auth/refresh", {
+              token: token
+            });
+
+            if (refreshResponse.data && refreshResponse.data.data?.accessToken) {
+              const newToken = refreshResponse.data.data.accessToken;
+              localStorage.setItem("token", newToken);
+
+              // Validate with new token
+              const validationResponse = await axiosPublic.get("/users/me", {
+                headers: { Authorization: `Bearer ${newToken}` },
+              });
+              return validationResponse.data;
+            }
+          } catch (refreshError) {
+            console.error("Token refresh failed:", refreshError);
+            localStorage.removeItem("token");
+          }
+        }
+        throw error;
+      }
+    };
+
+    const initializeAuth = async () => {
+      setLoading(true);
+
+      const token = localStorage.getItem("token");
+      if (!token) {
+        setUser(null);
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const userData = await validateToken(token);
+
+        if (userData && userData.data) {
+          setUser(userData.data);
+          console.log("User authenticated from token:", userData.data);
+        } else if (userData && userData.user) {
+          setUser(userData.user);
+          console.log("User authenticated from token (legacy format):", userData.user);
+        } else {
+          // Invalid response format
+          console.error("Invalid user data format:", userData);
+          localStorage.removeItem("token");
+          setUser(null);
+        }
+      } catch (error) {
+        console.error("Authentication initialization failed:", error.response?.data || error.message);
+
+        // If token is invalid or expired and couldn't be refreshed, remove it
+        localStorage.removeItem("token");
+        setUser(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    initializeAuth();
   }, [axiosPublic]);
 
   const signUp = async (signupData) => {
@@ -35,16 +89,20 @@ export const AuthProvider = ({ children }) => {
       console.log("AuthProvider - sending signup data:", signupData);
       const response = await axiosPublic.post(`/users/signup`, signupData);
 
-      // Handle the response structure: response.data.data.accessToken and response.data.data.user
-      if (response.data && response.data.success && response.data.data) {
-        const { accessToken, user } = response.data.data;
+      // Handle the response structure
+      let token = null;
+      let userData = null;
 
-        if (accessToken && user) {
-          localStorage.setItem("token", accessToken);
-          setUser(user);
-          console.log("User automatically logged in after signup:", user);
-          console.log("Access token stored:", accessToken);
-        }
+      if (response.data && response.data.success && response.data.data) {
+        token = response.data.data.accessToken;
+        userData = response.data.data.user;
+      }
+
+      if (token && userData) {
+        localStorage.setItem("token", token);
+        setUser(userData);
+        console.log("User automatically logged in after signup:", userData);
+        console.log("Access token stored:", token);
       }
 
       setLoading(false);
@@ -64,19 +122,25 @@ export const AuthProvider = ({ children }) => {
         password,
       });
 
-      // Handle login response structure similar to signup
-      if (res.data && res.data.success && res.data.data) {
-        const { accessToken, user } = res.data.data;
+      // Handle login response structure
+      let token = null;
+      let userData = null;
 
-        if (accessToken && user) {
-          localStorage.setItem("token", accessToken);
-          setUser(user);
-          console.log("User logged in:", user);
-        }
+      if (res.data && res.data.success && res.data.data) {
+        token = res.data.data.accessToken;
+        userData = res.data.data.user;
       } else if (res.data && res.data.token && res.data.user) {
         // Fallback for different response structure
-        localStorage.setItem("token", res.data.token);
-        setUser(res.data.user);
+        token = res.data.token;
+        userData = res.data.user;
+      }
+
+      if (token && userData) {
+        localStorage.setItem("token", token);
+        setUser(userData);
+        console.log("User logged in successfully:", userData);
+      } else {
+        throw new Error("Invalid login response format");
       }
 
       setLoading(false);
@@ -142,8 +206,14 @@ export const AuthProvider = ({ children }) => {
   };
 
   const signOut = () => {
+    // Clear all auth-related storage
     localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
+
+    // Reset user state
     setUser(null);
+
+    console.log("User signed out successfully");
   };
 
   return (

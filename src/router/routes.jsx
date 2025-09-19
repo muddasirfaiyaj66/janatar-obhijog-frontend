@@ -8,6 +8,7 @@ import ErrorPage from "../pages/ErrorPage";
 import Unauthorized from "../pages/Unauthorized";
 import Home from "../pages/Home/Home/Home";
 import Dashboard from "../pages/Dashboard/Dashboard";
+import AIAnalysis from "../pages/Dashboard/AIAnalysis/AIAnalysis";
 import PrivateRoute from "./privateRoute";
 import DashbordLayout from "../layout/DashbordLayout";
 
@@ -15,21 +16,19 @@ import MyComplaints from "../pages/User/MyComplaints";
 import SubmitedComplaints from "../pages/User/SubmitComplaint";
 import Gems from "../pages/User/Gems";
 
-import AllComplaints from  "../pages/Admin/Complaints";
+import AllComplaints from "../pages/Admin/Complaints";
 import Analytics from "../pages/Admin/Analytics";
 
 import AllComplaintsSuperAdmin from "../pages/SuperAdmin/AllComplaints";
 import UserManagement from "../pages/SuperAdmin/UserManagement";
 import AuthManagement from "../pages/SuperAdmin/AuthorityManagement";
-import AllComplain from "../pages/AllComplain/AllComplain";
-
-
-
+import AllComplainWatch from "../pages/Home/AllComplainWatch/AllComplainWatch";
 
 const AppRoutes = () => (
   <Routes>
     <Route path="/" element={<Main />}>
       <Route index element={<Home></Home>} />
+      <Route path="/all-complain" element={<AllComplainWatch />} />
     </Route>
 
     {/* Public Authentication Routes */}
@@ -37,7 +36,6 @@ const AppRoutes = () => (
     <Route path="/signup" element={<SignUp />} />
     <Route path="/forget-password" element={<ForgetPassword />} />
     <Route path="/reset-password" element={<ResetPassword />} />
-    <Route path="/all-complain" element={<AllComplain />} />
 
     {/* Protected Routes */}
     <Route
@@ -65,10 +63,16 @@ const AppRoutes = () => (
       />
       <Route path="users" element={<UserManagement />} />
       <Route path="authManagement" element={<AuthManagement />} />
-
     </Route>
 
     {/* Admin Only Routes */}
+
+    {/* AI Analysis Routes (Admin and Super Admin only) */}
+    <Route path="/ai-analysis" element={
+      <PrivateRoute allowedRoles={['admin', 'superAdmin']}>
+        <AIAnalysis />
+      </PrivateRoute>
+    } />
 
     {/* User Profile (All authenticated users) */}
     <Route

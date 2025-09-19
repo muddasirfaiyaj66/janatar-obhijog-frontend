@@ -11,7 +11,7 @@ const AllComplaintNew = ({ user }) => {
       const fetchComplaints = async () => {
         try {
           const res = await axiosSecure.get(`/complaints`);
-          console.log(res.data.data)
+          console.log(res.data.data);
           setComplaints(res.data.data);
         } catch (error) {
           console.error("Error fetching complaints:", error);
@@ -22,7 +22,7 @@ const AllComplaintNew = ({ user }) => {
       fetchComplaints();
     }
   }, [user, axiosSecure]);
-console.log(complaints)
+  console.log(complaints);
   if (loading) {
     return (
       <div className="flex justify-center items-center h-64">
@@ -48,7 +48,7 @@ console.log(complaints)
         {complaints.map((complaint) => (
           <div
             key={complaint._id}
-            className="bg-white border border-gray-200 shadow-sm rounded-xl p-5 hover:shadow-md transition duration-200"
+            className="bg-gray-200 border border-gray-200 shadow-sm rounded-xl p-5 hover:shadow-md transition duration-200"
           >
             {/* Title & Status */}
             <div className="flex justify-between items-center mb-2">
@@ -69,7 +69,9 @@ console.log(complaints)
             </div>
 
             {/* Description */}
-            <p className="text-gray-600 text-sm mb-3">{complaint.description}</p>
+            <p className="text-gray-600 text-sm mb-3">
+              {complaint.description}
+            </p>
 
             {/* Info Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-gray-700">
@@ -118,11 +120,25 @@ console.log(complaints)
               </div>
             )}
 
+           
+              <div className="mb-4">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                
+                    <img
+                      key={complaint.media}
+                      src={complaint.media}
+                      // alt={`complaint-media-${idx}`}
+                      className="w-full h-40 object-cover rounded-lg border"
+                    />
+                 
+                </div>
+              </div>
+            
+
             {/* Date */}
             {complaint.createdAt && (
               <p className="text-xs text-gray-400 mt-2">
-                Submitted:{" "}
-                {new Date(complaint.createdAt).toLocaleDateString()}
+                Submitted: {new Date(complaint.createdAt).toLocaleDateString()}
               </p>
             )}
           </div>

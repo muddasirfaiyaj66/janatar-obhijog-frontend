@@ -1,12 +1,20 @@
 import { motion } from "framer-motion";
-import { Zap, Smartphone, Building, Clock, Shield, AlertTriangle } from "lucide-react";
+import {
+  Zap,
+  Smartphone,
+  Building,
+  Clock,
+  Shield,
+  AlertTriangle,
+} from "lucide-react";
+import { Link } from "react-router";
 
 const CallToAction = () => {
   return (
     <section className="theme-bg-secondary py-24 relative overflow-hidden">
       <div style={styles.container}>
         <div style={styles.content}>
-          <motion.div 
+          <motion.div
             style={styles.textContent}
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -17,7 +25,9 @@ const CallToAction = () => {
               Ready to Make a Difference in Your Community?
             </h2>
             <p className="text-xl theme-text-secondary leading-relaxed mb-10">
-              Join thousands of proactive citizens who are transforming their neighborhoods. Your report can initiate real change and contribute to building better communities across Bangladesh.
+              Join thousands of proactive citizens who are transforming their
+              neighborhoods. Your report can initiate real change and contribute
+              to building better communities across Bangladesh.
             </p>
             <div style={styles.features}>
               <div style={styles.feature}>
@@ -25,32 +35,50 @@ const CallToAction = () => {
                   <Zap size={20} className="text-red-600 dark:text-red-400" />
                 </div>
                 <div style={styles.featureText}>
-                  <h4 className="text-lg font-semibold theme-text-primary mb-1">Quick & Easy Reporting</h4>
-                  <p className="theme-text-secondary leading-relaxed">File complaints in minutes with our streamlined process</p>
+                  <h4 className="text-lg font-semibold theme-text-primary mb-1">
+                    Quick & Easy Reporting
+                  </h4>
+                  <p className="theme-text-secondary leading-relaxed">
+                    File complaints in minutes with our streamlined process
+                  </p>
                 </div>
               </div>
               <div style={styles.feature}>
                 <div className="w-12 h-12 bg-red-100 dark:bg-red-900/30 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Smartphone size={20} className="text-red-600 dark:text-red-400" />
+                  <Smartphone
+                    size={20}
+                    className="text-red-600 dark:text-red-400"
+                  />
                 </div>
                 <div style={styles.featureText}>
-                  <h4 className="text-lg font-semibold theme-text-primary mb-1">Real-time Updates</h4>
-                  <p className="theme-text-secondary leading-relaxed">Track your complaint status in real-time</p>
+                  <h4 className="text-lg font-semibold theme-text-primary mb-1">
+                    Real-time Updates
+                  </h4>
+                  <p className="theme-text-secondary leading-relaxed">
+                    Track your complaint status in real-time
+                  </p>
                 </div>
               </div>
               <div style={styles.feature}>
                 <div className="w-12 h-12 bg-red-100 dark:bg-red-900/30 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Building size={20} className="text-red-600 dark:text-red-400" />
+                  <Building
+                    size={20}
+                    className="text-red-600 dark:text-red-400"
+                  />
                 </div>
                 <div style={styles.featureText}>
-                  <h4 className="text-lg font-semibold theme-text-primary mb-1">Direct Authority Contact</h4>
-                  <p className="theme-text-secondary leading-relaxed">Your reports go directly to relevant government departments</p>
+                  <h4 className="text-lg font-semibold theme-text-primary mb-1">
+                    Direct Authority Contact
+                  </h4>
+                  <p className="theme-text-secondary leading-relaxed">
+                    Your reports go directly to relevant government departments
+                  </p>
                 </div>
               </div>
             </div>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             style={styles.actionContent}
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -63,29 +91,39 @@ const CallToAction = () => {
                 <h3 style={styles.cardTitle}>Start Your First Complaint</h3>
               </div>
               <p style={styles.cardDescription}>
-                Report issues in your area and track their resolution from start to finish with complete transparency.
+                Report issues in your area and track their resolution from start
+                to finish with complete transparency.
               </p>
-              
-              <motion.button 
-                style={styles.primaryButton}
-                whileHover={{ scale: 1.03, boxShadow: "0 10px 25px rgba(255, 0, 0, 0.3)" }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Submit Complaint Now
-              </motion.button>
-              
+
+              <Link to={"/dashboard/myComplaints"}>
+                <motion.button
+                  style={styles.primaryButton}
+                  whileHover={{
+                    scale: 1.03,
+                    boxShadow: "0 10px 25px rgba(255, 0, 0, 0.3)",
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Submit Complaint Now
+                </motion.button>
+              </Link>
+
               <div style={styles.divider}>
-                <span style={styles.dividerText}>or explore existing issues</span>
+                <span style={styles.dividerText}>
+                  or explore existing issues
+                </span>
               </div>
-              
-              <motion.button 
-                style={styles.secondaryButton}
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Browse Existing Issues
-              </motion.button>
-              
+
+              <Link to={'/all-complain'}>
+                <motion.button
+                  style={styles.secondaryButton}
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Browse Existing Issues
+                </motion.button>
+              </Link>
+
               <div style={styles.trustIndicators}>
                 <div style={styles.trustItem}>
                   <Clock size={16} color="#1C733A" />
@@ -105,8 +143,8 @@ const CallToAction = () => {
             </div>
           </motion.div>
         </div>
-        
-        <motion.div 
+
+        <motion.div
           style={styles.bottomSection}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -118,11 +156,15 @@ const CallToAction = () => {
               <AlertTriangle size={32} color="#DC2626" />
             </div>
             <div style={styles.alertContent}>
-              <h4 style={styles.alertTitle}>Emergency or Critical Issues?</h4>
+              <Link to={"/dashboard/myComplaints"}>
+                <h4 style={styles.alertTitle}>Emergency or Critical Issues?</h4>
+              </Link>
               <p style={styles.alertText}>
-                For urgent matters requiring immediate attention (safety hazards, infrastructure emergencies), use our priority reporting system for faster response.
+                For urgent matters requiring immediate attention (safety
+                hazards, infrastructure emergencies), use our priority reporting
+                system for faster response.
               </p>
-              <motion.button 
+              <motion.button
                 style={styles.emergencyButton}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -134,8 +176,8 @@ const CallToAction = () => {
         </motion.div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 const styles = {
   section: {
@@ -360,6 +402,6 @@ const styles = {
     transition: "all 0.3s ease",
     boxShadow: "0 4px 12px rgba(220, 38, 38, 0.3)",
   },
-}
+};
 
-export default CallToAction
+export default CallToAction;

@@ -9,7 +9,7 @@ const DashbordLayout = () => {
   const Userrole = user.role;
   console.log(user);
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <div className="min-h-screen bg-green-50  transition-colors duration-300">
       <DashboardSidebar
         role={Userrole}
         isOpen={isOpen}

@@ -6,7 +6,7 @@ const SubmitComplaint = () => {
 const {user} = useContext(AuthContext);
 console.log(user)
     return (
-        <div>
+        <div className='w-[70%] mx-auto flex items-center justify-center bg-green-50 text-black'>
             <></>
             <AllComplaintNew user={user}></AllComplaintNew>
         </div>
