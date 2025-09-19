@@ -15,20 +15,19 @@ import MyComplaints from "../pages/User/MyComplaints";
 import SubmitedComplaints from "../pages/User/SubmitComplaint";
 import Gems from "../pages/User/Gems";
 
-import AllComplaints from  "../pages/Admin/Complaints";
+import AllComplaints from "../pages/Admin/Complaints";
 import Analytics from "../pages/Admin/Analytics";
 
 import AllComplaintsSuperAdmin from "../pages/SuperAdmin/AllComplaints";
 import UserManagement from "../pages/SuperAdmin/UserManagement";
 import AuthManagement from "../pages/SuperAdmin/AuthorityManagement";
-
-
-
+import AllComplainWatch from "../pages/Home/AllComplainWatch/AllComplainWatch";
 
 const AppRoutes = () => (
   <Routes>
     <Route path="/" element={<Main />}>
       <Route index element={<Home></Home>} />
+      <Route path="/all-complain" element={<AllComplainWatch />} />
     </Route>
 
     {/* Public Authentication Routes */}
@@ -36,7 +35,6 @@ const AppRoutes = () => (
     <Route path="/signup" element={<SignUp />} />
     <Route path="/forget-password" element={<ForgetPassword />} />
     <Route path="/reset-password" element={<ResetPassword />} />
-    <Route path="/all-complain" element={<AllComplain />} />
 
     {/* Protected Routes */}
     <Route
@@ -64,7 +62,6 @@ const AppRoutes = () => (
       />
       <Route path="users" element={<UserManagement />} />
       <Route path="authManagement" element={<AuthManagement />} />
-
     </Route>
 
     {/* Admin Only Routes */}
