@@ -21,7 +21,14 @@ import Analytics from "../pages/Admin/Analytics";
 import AllComplaintsSuperAdmin from "../pages/SuperAdmin/AllComplaints";
 import UserManagement from "../pages/SuperAdmin/UserManagement";
 import AuthManagement from "../pages/SuperAdmin/AuthorityManagement";
+<<<<<<< HEAD
 import AllComplainWatch from "../pages/Home/AllComplainWatch/AllComplainWatch";
+=======
+import AllComplain from "../pages/AllComplain/AllComplain";
+
+
+
+>>>>>>> 854559b8a467837f2a8eed544131784e0bcf5c74
 
 const AppRoutes = () => (
   <Routes>
