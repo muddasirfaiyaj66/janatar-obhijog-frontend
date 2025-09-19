@@ -22,12 +22,13 @@ import AllComplaintsSuperAdmin from "../pages/SuperAdmin/AllComplaints";
 import UserManagement from "../pages/SuperAdmin/UserManagement";
 import AuthManagement from "../pages/SuperAdmin/AuthorityManagement";
 import AllComplainWatch from "../pages/Home/AllComplainWatch/AllComplainWatch";
+import AllComplain from "../pages/AllComplain/AllComplain";
 
 const AppRoutes = () => (
   <Routes>
     <Route path="/" element={<Main />}>
       <Route index element={<Home></Home>} />
-      <Route path="/all-complain" element={<AllComplainWatch />} />
+      <Route path="/all-complain" element={<AllComplain />} />
     </Route>
 
     {/* Public Authentication Routes */}
