@@ -9,6 +9,7 @@ import Unauthorized from "../pages/Unauthorized";
 import Home from "../pages/Home/Home/Home";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import PrivateRoute from "./privateRoute";
+import AllComplain from "../pages/AllComplain/AllComplain";
 
 const AppRoutes = () => (
   <Routes>
@@ -21,6 +22,7 @@ const AppRoutes = () => (
     <Route path="/signup" element={<SignUp />} />
     <Route path="/forget-password" element={<ForgetPassword />} />
     <Route path="/reset-password" element={<ResetPassword />} />
+    <Route path="/all-complain" element={<AllComplain />} />
 
     {/* Protected Routes */}
     <Route path="/dashboard" element={

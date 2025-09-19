@@ -202,24 +202,27 @@ const Banner = () => {
         </motion.div>
 
         {/* Activity ticker */}
+        {/* Activity ticker */}
         <motion.div
-          className="bg-red-50 dark:bg-red-950/50 border border-red-200 dark:border-red-900/50 rounded-xl p-5 backdrop-blur-sm"
+          className="bg-red-50 dark:bg-red-950/50 border border-red-200 dark:border-red-900/50 rounded-xl p-5 backdrop-blur-sm relative overflow-hidden"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
         >
-          <div className="flex items-center gap-5 overflow-hidden">
-            <span className="bg-red-600 dark:bg-red-500 text-white px-4 py-2 rounded-lg font-bold text-sm flex-shrink-0">
-              Recently Resolved:
-            </span>
-            <div className="flex animate-scroll whitespace-nowrap text-gray-800 dark:text-gray-300 font-medium">
-              <span className="mr-12">Water logging in Mirpur - Resolved •</span>
-              <span className="mr-12">Street light repair in Gulshan - Completed •</span>
-              <span className="mr-12">Garbage collection in Uttara - Improved •</span>
-              <span className="mr-12">Traffic signal in Dhanmondi - Fixed •</span>
-            </div>
+          {/* Fixed Label */}
+          <span className="absolute left-0 top-1/2 -translate-y-1/2 bg-red-600 dark:bg-red-500 text-white px-4 py-2 rounded-lg font-bold text-sm z-10">
+            Recently Resolved:
+          </span>
+
+          {/* Scrolling ticker */}
+          <div className="animate-scroll whitespace-nowrap text-gray-800 dark:text-gray-300 font-medium pl-48">
+            <span className="mr-12">Water logging in Mirpur - Resolved •</span>
+            <span className="mr-12">Street light repair in Gulshan - Completed •</span>
+            <span className="mr-12">Garbage collection in Uttara - Improved •</span>
+            <span className="mr-12">Traffic signal in Dhanmondi - Fixed •</span>
           </div>
         </motion.div>
+
       </div>
 
       <style jsx>{`
