@@ -8,6 +8,7 @@ import ErrorPage from "../pages/ErrorPage";
 import Unauthorized from "../pages/Unauthorized";
 import Home from "../pages/Home/Home/Home";
 import Dashboard from "../pages/Dashboard/Dashboard";
+import AIAnalysis from "../pages/Dashboard/AIAnalysis/AIAnalysis";
 import PrivateRoute from "./privateRoute";
 import DashbordLayout from "../layout/DashbordLayout";
 
@@ -65,6 +66,13 @@ const AppRoutes = () => (
     </Route>
 
     {/* Admin Only Routes */}
+
+    {/* AI Analysis Routes (Admin and Super Admin only) */}
+    <Route path="/ai-analysis" element={
+      <PrivateRoute allowedRoles={['admin', 'superAdmin']}>
+        <AIAnalysis />
+      </PrivateRoute>
+    } />
 
     {/* User Profile (All authenticated users) */}
     <Route
