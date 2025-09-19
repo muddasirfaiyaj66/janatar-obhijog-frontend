@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
 import { Menu, X, Globe, ChevronDown, Sun, Moon, User, LogIn, LogOut } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router";
 import { useTranslation } from "react-i18next";
 import { AuthContext } from "../Provider/authProvider";
 
