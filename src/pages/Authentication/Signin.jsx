@@ -97,7 +97,7 @@ export default function SignIn() {
                   message: "Invalid email address",
                 },
               })}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"
+              className="mt-1 text-black  block w-full px-3 py-2 border border-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"
             />
             {errors.email && (
               <p className="mt-1 text-sm text-red-600">
@@ -108,7 +108,7 @@ export default function SignIn() {
 
           <div>
             <div className="flex justify-between items-center">
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium !text-gray-800">
                 Password
               </label>
               <Link to="/forget-password" className="text-sm text-green-500 hover:text-green-700">
@@ -124,7 +124,7 @@ export default function SignIn() {
                   message: "Password must be at least 6 characters",
                 },
               })}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"
+              className="mt-1 block w-full px-3 py-2 border border-gray-100 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 text-black"
             />
             {errors.password && (
               <p className="mt-1 text-sm text-red-600">
@@ -145,7 +145,7 @@ export default function SignIn() {
           </button>
         </form>
 
-        <div className="mt-6 text-center text-sm">
+        <div className="mt-6 text-center text-sm text-black">
           <p>
             Don't have an account?{" "}
             <Link
