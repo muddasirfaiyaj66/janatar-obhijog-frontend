@@ -7,7 +7,7 @@ const Dashboard = () => {
 
     if (!user) {
         return (
-            <div className="min-h-screen flex items-center justify-center">
+            <div className="min-h-screen flex items-center justify-center ">
                 <div className="text-center">
                     <h1 className="text-2xl font-bold text-gray-900">Access Denied</h1>
                     <p className="text-gray-600">Please sign in to access your dashboard.</p>
@@ -35,7 +35,10 @@ const Dashboard = () => {
                         <div className="flex items-center space-x-4">
                             <div className="w-16 h-16 rounded-full bg-gray-300 flex items-center justify-center">
                                 <img
-                                    src={user.profileImg || `https://ui-avatars.com/api/?name=${user.firstName}+${user.lastName}&background=059669&color=fff`}
+                                    src={
+                                        user.profileImg ||
+                                        `https://ui-avatars.com/api/?name=${user.firstName}+${user.lastName}&background=059669&color=fff`
+                                    }
                                     alt="Profile"
                                     className="w-16 h-16 rounded-full object-cover"
                                 />
@@ -94,7 +97,7 @@ const Dashboard = () => {
                                 </button>
 
                                 {/* Admin and Super Admin Only Actions */}
-                                {user.role === 'admin' || user.role === 'superAdmin' ? (
+                                {(user.role === 'admin' || user.role === 'superAdmin') && (
                                     <Link
                                         to="/ai-analysis"
                                         className="p-4 border border-indigo-300 rounded-lg hover:bg-indigo-50 text-left bg-indigo-50"
@@ -104,7 +107,7 @@ const Dashboard = () => {
                                             Get intelligent insights from citizen complaints using AI tools
                                         </p>
                                     </Link>
-                                ) : null}
+                                )}
                             </div>
                         </div>
                     </div>

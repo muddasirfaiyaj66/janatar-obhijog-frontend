@@ -1,11 +1,7 @@
-import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle, TrendingUp, Users, Shield, FileText, MapPin, Clock } from "lucide-react";
-import z from "zod";
 
 const Banner = () => {
-  const { t } = useTranslation();
-
   // Animation variants
   const fadeIn = {
     hidden: { opacity: 0, y: 30 },
@@ -27,162 +23,161 @@ const Banner = () => {
     }
   };
 
-  const floatAnimation = {
-    y: [0, -10, 0],
-    transition: {
-      duration: 4,
-      repeat: Infinity,
-      ease: "easeInOut"
-    }
-  };
-
   return (
-    <section className="mt-10" style={styles.banner}>
-      {/* Background elements with civic theme */}
-      <div style={styles.mapPattern}></div>
-      <div style={styles.gridOverlay}></div>
+    <section className="mt-16 theme-bg-primary min-h-screen flex items-center relative overflow-hidden">
+      {/* Background grid overlay */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        backgroundImage: `linear-gradient(rgba(239, 68, 68, 0.1) 1px, transparent 1px),
+                          linear-gradient(90deg, rgba(239, 68, 68, 0.1) 1px, transparent 1px)`,
+        backgroundSize: "60px 60px",
+        opacity: 0.3,
+      }}></div>
 
-      {/* Animated floating elements */}
-      <motion.div style={styles.floatingDocument} animate={floatAnimation}>
-        <FileText size={24} color="#1C733A" />
-      </motion.div>
-      <motion.div style={styles.floatingLocation} animate={floatAnimation}>
-        <MapPin size={24} color="#FF0000" />
-      </motion.div>
-      <motion.div style={styles.floatingTime} animate={floatAnimation}>
-        <Clock size={24} color="#1C733A" />
-      </motion.div>
-
-      <div style={styles.container}>
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full relative z-10">
         <motion.div
-          style={styles.content}
+          className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-16"
           initial="hidden"
           animate="visible"
           variants={staggerChildren}
         >
-          <motion.div style={styles.textContent} variants={fadeIn}>
-            <div style={styles.badge}>
-
-              <span>{t("home.banner.badge") || "Official Government Platform"}</span>
+          {/* Text Content */}
+          <motion.div className="max-w-2xl" variants={fadeIn}>
+            <div className="inline-flex items-center gap-2 bg-red-600 dark:bg-red-500 text-white px-4 py-2 rounded-lg text-sm font-semibold mb-8 shadow-lg">
+              <Shield size={16} />
+              <span>Official Government Platform</span>
             </div>
 
-            <h1 style={styles.title}>
-              <span style={styles.banglaTitle}>{t("home.title") || "জনতার অভিযোগ"}</span>
-              <span style={styles.englishTitle}>{t("home.subtitle") || "Digital Complaint Box"}</span>
-            </h1>
+            <div className="mb-8">
+              <h1 className="text-5xl lg:text-6xl font-black theme-text-primary mb-4 leading-tight">
+                জনতার অভিযোগ
+              </h1>
+              <h2 className="text-2xl lg:text-3xl font-bold text-gray-700 dark:text-gray-500 leading-relaxed">
+                Digital Complaint Box
+              </h2>
+            </div>
 
-            <p style={styles.subtitle}>
-              {t("home.description") || "Your voice drives change. Report civic issues, track resolutions in real-time, and contribute to community development."}
+            <p className="text-xl text-gray-600 dark:text-gray-500 mb-10 leading-relaxed max-w-xl">
+              Your voice drives change. Report civic issues, track resolutions in real-time, and contribute to community development through our secure government platform.
             </p>
 
-            <div style={styles.featureGrid}>
-              <div style={styles.featureItem}>
-                <div style={styles.featureIcon}>
-                  <FileText size={20} />
+            {/* Feature highlights */}
+            <div className="space-y-4 mb-12">
+              <div className="flex items-center gap-4 p-4 bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-all">
+                <div className="w-12 h-12 bg-green-600 dark:bg-green-600 rounded-xl flex items-center justify-center shadow-lg">
+                  <FileText size={18} className="text-white" />
                 </div>
-                <div style={styles.featureText}>
-                  <h4>Easy Reporting</h4>
-                  <p>File complaints in minutes</p>
-                </div>
-              </div>
-              <div style={styles.featureItem}>
-                <div style={styles.featureIcon}>
-                  <Clock size={20} />
-                </div>
-                <div style={styles.featureText}>
-                  <h4>Real-time Tracking</h4>
-                  <p>Monitor resolution progress</p>
+                <div>
+                  <h4 className="font-bold text-gray-900 dark:text-white">Easy Reporting</h4>
+                  <p className="text-gray-600 dark:text-gray-300">File complaints in minutes</p>
                 </div>
               </div>
-              <div style={styles.featureItem}>
-                <div style={styles.featureIcon}>
-                  <Shield size={20} />
+              <div className="flex items-center gap-4 p-4 bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-all">
+                <div className="w-12 h-12 bg-green-600 dark:bg-green-600 rounded-xl flex items-center justify-center shadow-lg">
+                  <TrendingUp size={18} className="text-white" />
                 </div>
-                <div style={styles.featureText}>
-                  <h4>Official Response</h4>
-                  <p>Government-guaranteed action</p>
+                <div>
+                  <h4 className="font-bold text-gray-900 dark:text-white">Real-time Tracking</h4>
+                  <p className="text-gray-600 dark:text-gray-300">Monitor resolution progress</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-4 p-4 bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-all">
+                <div className="w-12 h-12 bg-green-600 dark:bg-green-600 rounded-xl flex items-center justify-center shadow-lg">
+                  <Shield size={18} className="text-white" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-gray-900 dark:text-white">Official Response</h4>
+                  <p className="text-gray-600 dark:text-gray-300">Government-guaranteed action</p>
                 </div>
               </div>
             </div>
 
-            <div style={styles.buttonGroup}>
+            {/* CTA Buttons */}
+            <div className="flex flex-wrap gap-4">
               <motion.button
-                style={styles.primaryButton}
-                whileHover={{ scale: 1.03, boxShadow: "0 10px 25px rgba(255, 0, 0, 0.3)" }}
+                className="flex items-center gap-3 bg-red-600 hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all"
+                whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                {t("home.reportIssue") || "Report an Issue"}
+                Report an Issue
                 <ArrowRight size={18} />
               </motion.button>
 
               <motion.button
-                style={styles.secondaryButton}
-                whileHover={{ scale: 1.03, backgroundColor: "rgba(255, 255, 255, 0.15)" }}
+                className="px-8 py-4 border-2 border-gray-400 dark:border-gray-600 text-gray-800 dark:text-gray-500 hover:bg-gray-100 dark:hover:bg-slate-800 rounded-xl font-semibold text-lg transition-all"
+                whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                {t("home.learnMore") || "How It Works"}
+                How It Works
               </motion.button>
             </div>
           </motion.div>
 
-          <motion.div style={styles.visualContent} variants={fadeIn}>
-            <div style={styles.cardContainer}>
-              <div style={styles.demoCard}>
-                <div style={styles.cardHeader}>
-                  <div style={styles.cardDepartment}>
-                    <span>Public Works Department</span>
+          {/* Visual Content */}
+          <motion.div className="flex justify-center relative" variants={fadeIn}>
+            <div className="relative max-w-md w-full">
+              {/* Demo complaint card */}
+              <div className="bg-white dark:bg-slate-800 rounded-2xl p-7 shadow-2xl border border-gray-200 dark:border-slate-700 relative z-10">
+                <div className="flex justify-between items-center mb-6">
+                  <div className="bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-400 px-3 py-1 rounded-lg text-sm font-semibold border border-green-200 dark:border-green-800">
+                    Public Works Department
                   </div>
-                  <div style={styles.statusBadge}>
-                    <Shield size={14} />
-                    {t("home.banner.demo.resolved") || "Resolved"}
+                  <div className="flex items-center gap-2 bg-green-700 dark:bg-green-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow-md">
+                    <CheckCircle size={14} />
+                    Resolved
                   </div>
                 </div>
 
-                <div style={styles.cardBody}>
-                  <div style={styles.cardId}>COMPLAINT ID: #JO-2024-001</div>
-                  <h3 style={styles.cardTitle}>{t("home.banner.demo.cardTitle") || "Road Repair Completed"}</h3>
-                  <div style={styles.cardLocation}>
+                <div className="mb-6">
+                  <div className="text-sm text-gray-500 dark:text-gray-400 font-semibold mb-4 tracking-wide">
+                    COMPLAINT ID: #JO-2024-001
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                    Road Repair Completed
+                  </h3>
+                  <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400 mb-4">
                     <MapPin size={14} />
                     <span>Main Street, Dhaka - Ward 15</span>
                   </div>
-                  <p style={styles.cardDescription}>
-                    {t("home.banner.demo.cardDescription") || "Potholes on Main Street have been filled and the road is now safe for travel."}
+                  <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                    Potholes on Main Street have been filled and the road is now safe for travel. Quality inspection completed.
                   </p>
 
-                  <div style={styles.cardTimeline}>
-                    <div style={styles.timelineItem}>
-                      <div style={styles.timelineDot}></div>
-                      <div style={styles.timelineContent}>
-                        <span style={styles.timelineDate}>Jan 15, 2024</span>
-                        <span style={styles.timelineText}>Issue Reported</span>
+                  {/* Timeline */}
+                  <div className="space-y-4 mb-6">
+                    <div className="flex items-start gap-4">
+                      <div className="w-3 h-3 bg-gray-300 dark:bg-gray-600 rounded-full mt-2 flex-shrink-0"></div>
+                      <div>
+                        <div className="text-sm text-gray-500 dark:text-gray-400 font-semibold">Jan 15, 2024</div>
+                        <div className="text-gray-900 dark:text-white font-medium">Issue Reported</div>
                       </div>
                     </div>
-                    <div style={styles.timelineItem}>
-                      <div style={styles.timelineDot}></div>
-                      <div style={styles.timelineContent}>
-                        <span style={styles.timelineDate}>Jan 18, 2024</span>
-                        <span style={styles.timelineText}>Under Review</span>
+                    <div className="flex items-start gap-4">
+                      <div className="w-3 h-3 bg-gray-300 dark:bg-gray-600 rounded-full mt-2 flex-shrink-0"></div>
+                      <div>
+                        <div className="text-sm text-gray-500 dark:text-gray-400 font-semibold">Jan 18, 2024</div>
+                        <div className="text-gray-900 dark:text-white font-medium">Under Review</div>
                       </div>
                     </div>
-                    <div style={styles.timelineItem}>
-                      <div style={styles.timelineDotActive}></div>
-                      <div style={styles.timelineContent}>
-                        <span style={styles.timelineDate}>Jan 25, 2024</span>
-                        <span style={styles.timelineText}>Resolved</span>
+                    <div className="flex items-start gap-4">
+                      <div className="w-3 h-3 bg-green-700 dark:bg-green-600 rounded-full mt-2 flex-shrink-0 shadow-lg ring-4 ring-green-100 dark:ring-green-900/50"></div>
+                      <div>
+                        <div className="text-sm text-gray-500 dark:text-gray-400 font-semibold">Jan 25, 2024</div>
+                        <div className="text-gray-900 dark:text-white font-medium">Resolved</div>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div style={styles.cardProgress}>
-                  <div style={styles.progressInfo}>
-                    <span style={styles.progressLabel}>Resolution Progress</span>
-                    <span style={styles.progressPercentage}>100%</span>
+                {/* Progress bar */}
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-900 dark:text-white font-semibold">Resolution Progress</span>
+                    <span className="text-green-700 dark:text-green-400 font-bold">100%</span>
                   </div>
-                  <div style={styles.progressBar}>
-                    <div style={styles.progressFill}></div>
+                  <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
+                    <div className="h-full bg-gradient-to-r from-green-700 to-green-500 dark:from-green-600 dark:to-green-400 rounded-full"></div>
                   </div>
-                  <div style={styles.progressDays}>
+                  <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                     <Clock size={12} />
                     <span>Resolved in 10 days</span>
                   </div>
@@ -190,461 +185,65 @@ const Banner = () => {
               </div>
 
               {/* Stats overlay */}
-              <div style={styles.statsOverlay}>
-                <div style={styles.stat}>
-                  <span style={styles.statNumber}>15K+</span>
-                  <span style={styles.statLabel}>Issues Resolved</span>
-                </div>
-                <div style={styles.stat}>
-                  <span style={styles.statNumber}>95%</span>
-                  <span style={styles.statLabel}>Satisfaction Rate</span>
+              <div className="absolute -bottom-6 -right-6 bg-gradient-to-r from-red-600 to-red-500 dark:from-red-500 dark:to-red-600 text-white p-5 rounded-2xl shadow-2xl z-20">
+                <div className="flex gap-6">
+                  <div className="text-center">
+                    <div className="text-2xl font-black">15K+</div>
+                    <div className="text-xs font-semibold opacity-90">Issues Resolved</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-black">95%</div>
+                    <div className="text-xs font-semibold opacity-90">Satisfaction Rate</div>
+                  </div>
                 </div>
               </div>
             </div>
           </motion.div>
         </motion.div>
 
-        {/* Scrolling ticker for recent complaints */}
+        {/* Activity ticker */}
+        {/* Activity ticker */}
         <motion.div
-          style={styles.tickerContainer}
+          className="bg-red-50 dark:bg-red-950/50 border border-red-200 dark:border-red-900/50 rounded-xl p-5 backdrop-blur-sm relative overflow-hidden"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
+          transition={{ delay: 0.8 }}
         >
-          <div style={styles.ticker}>
-            <span style={styles.tickerLabel}>Recently Resolved:</span>
-            <div style={styles.tickerItems}>
-              <span>Water logging in Mirpur - Resolved</span>
-              <span>Street light repair in Gulshan - Completed</span>
-              <span>Garbage collection in Uttara - Improved</span>
-            </div>
+          {/* Fixed Label */}
+          <span className="absolute left-0 top-1/2 -translate-y-1/2 bg-red-600 dark:bg-red-500 text-white px-4 py-2 rounded-lg font-bold text-sm z-10">
+            Recently Resolved:
+          </span>
+
+          {/* Scrolling ticker */}
+          <div className="animate-scroll whitespace-nowrap text-gray-800 dark:text-gray-300 font-medium pl-48">
+            <span className="mr-12">Water logging in Mirpur - Resolved •</span>
+            <span className="mr-12">Street light repair in Gulshan - Completed •</span>
+            <span className="mr-12">Garbage collection in Uttara - Improved •</span>
+            <span className="mr-12">Traffic signal in Dhanmondi - Fixed •</span>
           </div>
         </motion.div>
+
       </div>
+
+      <style jsx>{`
+        @keyframes scroll {
+          0% { transform: translateX(100%); }
+          100% { transform: translateX(-100%); }
+        }
+        .animate-scroll {
+          animation: scroll 25s linear infinite;
+        }
+        
+        @media (max-width: 1024px) {
+          .grid {
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            text-align: center;
+          }
+        }
+      `}</style>
     </section>
-  )
-}
-
-const styles = {
-  banner: {
-    background: "linear-gradient(135deg, #000000 0%, #1a1a1a 100%)",
-    minHeight: "100vh",
-    display: "flex",
-    alignItems: "center",
-    position: "relative",
-    overflow: "hidden",
-    padding: "80px 0",
-    color: "#ffffff",
-    fontFamily: "'Inter', sans-serif",
-  },
-  mapPattern: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h100v100H0z' fill='none'/%3E%3Cpath d='M25 25h50v50H25z' stroke='%23FF0000' stroke-width='0.5' fill='none' opacity='0.1'/%3E%3Cpath d='M50 0v100M0 50h100' stroke='%231C733A' stroke-width='0.3' opacity='0.05'/%3E%3C/svg%3E")`,
-    backgroundSize: "100px 100px",
-    opacity: 0.7,
-    zIndex: 1,
-  },
-  gridOverlay: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundImage: `linear-gradient(rgba(255, 0, 0, 0.05) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(255, 0, 0, 0.05) 1px, transparent 1px)`,
-    backgroundSize: "50px 50px",
-    zIndex: 2,
-    pointerEvents: "none",
-  },
-  floatingDocument: {
-    position: "absolute",
-    top: "20%",
-    left: "10%",
-    background: "rgba(255, 255, 255, 0.9)",
-    borderRadius: "12px",
-    padding: "12px",
-    boxShadow: "0 5px 15px rgba(0, 0, 0, 0.2)",
-    zIndex: 3,
-  },
-  floatingLocation: {
-    position: "absolute",
-    top: "60%",
-    left: "5%",
-    background: "rgba(255, 255, 255, 0.9)",
-    borderRadius: "12px",
-    padding: "12px",
-    boxShadow: "0 5px 15px rgba(0, 0, 0, 0.2)",
-    zIndex: 3,
-  },
-  floatingTime: {
-    position: "absolute",
-    top: "30%",
-    right: "10%",
-    background: "rgba(255, 255, 255, 0.9)",
-    borderRadius: "12px",
-    padding: "12px",
-    boxShadow: "0 5px 15px rgba(0, 0, 0, 0.2)",
-    zIndex: 3,
-  },
-  container: {
-    maxWidth: "1300px",
-    margin: "0 auto",
-    padding: "0 20px",
-    width: "100%",
-    position: "relative",
-    zIndex: 4,
-  },
-  content: {
-    display: "flex",
-    alignItems: "center",
-    gap: "60px",
-    flexWrap: "wrap",
-    justifyContent: "center",
-    marginBottom: "40px",
-  },
-  textContent: {
-    flex: "1",
-    minWidth: "300px",
-    maxWidth: "600px",
-  },
-  badge: {
-    display: "inline-flex",
-    alignItems: "center",
-    gap: "8px",
-    backgroundColor: "#FF0000",
-    color: "#ffffff",
-    padding: "8px 16px",
-    borderRadius: "6px",
-    fontSize: "0.9rem",
-    fontWeight: "500",
-    marginBottom: "24px",
-  },
-  title: {
-    marginBottom: "20px",
-  },
-  banglaTitle: {
-    display: "block",
-    fontSize: "3.5rem",
-    fontWeight: "800",
-    color: "#ffffff",
-    lineHeight: "1.1",
-    marginBottom: "10px",
-    textShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
-  },
-  englishTitle: {
-    display: "block",
-    fontSize: "2rem",
-    fontWeight: "600",
-    color: "#C1BAB4",
-    lineHeight: "1.2",
-    marginBottom: "24px",
-  },
-  subtitle: {
-    fontSize: "1.25rem",
-    fontWeight: "400",
-    color: "#C1BAB4",
-    marginBottom: "32px",
-    lineHeight: "1.6",
-    maxWidth: "500px",
-  },
-  featureGrid: {
-    display: "grid",
-    gridTemplateColumns: "1fr",
-    gap: "16px",
-    marginBottom: "40px",
-  },
-  featureItem: {
-    display: "flex",
-    alignItems: "center",
-    gap: "16px",
-    padding: "16px",
-    backgroundColor: "rgba(255, 255, 255, 0.05)",
-    borderRadius: "8px",
-    border: "1px solid rgba(255, 255, 255, 0.1)",
-  },
-  featureIcon: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    width: "40px",
-    height: "40px",
-    backgroundColor: "#1C733A",
-    borderRadius: "8px",
-    color: "#ffffff",
-    flexShrink: 0,
-  },
-  featureText: {
-    flex: 1,
-  },
-  featureTextH4: {
-    margin: "0 0 4px 0",
-    fontSize: "1rem",
-    fontWeight: "600",
-    color: "#ffffff",
-  },
-  featureTextP: {
-    margin: 0,
-    fontSize: "0.9rem",
-    color: "#C1BAB4",
-  },
-  buttonGroup: {
-    display: "flex",
-    gap: "16px",
-    marginBottom: "48px",
-    flexWrap: "wrap",
-  },
-  primaryButton: {
-    display: "flex",
-    alignItems: "center",
-    gap: "8px",
-    backgroundColor: "#FF0000",
-    color: "#ffffff",
-    border: "none",
-    padding: "16px 32px",
-    fontSize: "1.1rem",
-    fontWeight: "600",
-    borderRadius: "8px",
-    cursor: "pointer",
-    transition: "all 0.3s ease",
-    boxShadow: "0 4px 15px rgba(255, 0, 0, 0.3)",
-  },
-  secondaryButton: {
-    backgroundColor: "transparent",
-    color: "#ffffff",
-    border: "2px solid rgba(255, 255, 255, 0.3)",
-    padding: "14px 32px",
-    fontSize: "1.1rem",
-    fontWeight: "600",
-    borderRadius: "8px",
-    cursor: "pointer",
-    transition: "all 0.3s ease",
-    backdropFilter: "blur(10px)",
-  },
-  visualContent: {
-    flex: "1",
-    minWidth: "300px",
-    display: "flex",
-    justifyContent: "center",
-    position: "relative",
-  },
-  cardContainer: {
-    position: "relative",
-    maxWidth: "420px",
-    width: "100%",
-  },
-  demoCard: {
-    backgroundColor: "#ffffff",
-    borderRadius: "16px",
-    padding: "24px",
-    boxShadow: "0 20px 40px rgba(0, 0, 0, 0.2)",
-    border: "1px solid rgba(0, 0, 0, 0.1)",
-    width: "100%",
-    position: "relative",
-    zIndex: 5,
-    color: "#000000",
-  },
-  cardHeader: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: "16px",
-    flexWrap: "wrap",
-    gap: "8px",
-  },
-  cardDepartment: {
-    fontSize: "0.8rem",
-    color: "#1C733A",
-    fontWeight: "600",
-    padding: "4px 8px",
-    backgroundColor: "rgba(28, 115, 58, 0.1)",
-    borderRadius: "4px",
-  },
-  statusBadge: {
-    display: "flex",
-    alignItems: "center",
-    gap: "6px",
-    backgroundColor: "#1C733A",
-    color: "#ffffff",
-    padding: "6px 12px",
-    borderRadius: "20px",
-    fontSize: "0.8rem",
-    fontWeight: "600",
-  },
-  cardBody: {
-    marginBottom: "20px",
-  },
-  cardId: {
-    fontSize: "0.75rem",
-    color: "#666",
-    fontWeight: "500",
-    marginBottom: "12px",
-    letterSpacing: "0.5px",
-  },
-  cardTitle: {
-    fontSize: "1.3rem",
-    fontWeight: "700",
-    color: "#000000",
-    marginBottom: "8px",
-  },
-  cardLocation: {
-    display: "flex",
-    alignItems: "center",
-    gap: "6px",
-    fontSize: "0.9rem",
-    color: "#666",
-    marginBottom: "12px",
-  },
-  cardDescription: {
-    color: "#444",
-    lineHeight: "1.5",
-    marginBottom: "20px",
-    fontSize: "0.95rem",
-  },
-  cardTimeline: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "16px",
-  },
-  timelineItem: {
-    display: "flex",
-    alignItems: "flex-start",
-    gap: "12px",
-  },
-  timelineDot: {
-    width: "12px",
-    height: "12px",
-    borderRadius: "50%",
-    backgroundColor: "#ddd",
-    marginTop: "5px",
-    flexShrink: 0,
-  },
-  timelineDotActive: {
-    width: "12px",
-    height: "12px",
-    borderRadius: "50%",
-    backgroundColor: "#1C733A",
-    marginTop: "5px",
-    flexShrink: 0,
-  },
-  timelineContent: {
-    display: "flex",
-    flexDirection: "column",
-  },
-  timelineDate: {
-    fontSize: "0.8rem",
-    color: "#666",
-    fontWeight: "500",
-  },
-  timelineText: {
-    fontSize: "0.9rem",
-    color: "#000000",
-  },
-  cardProgress: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "8px",
-  },
-  progressInfo: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  progressLabel: {
-    fontSize: "0.9rem",
-    color: "#444",
-    fontWeight: "500",
-  },
-  progressPercentage: {
-    fontSize: "0.9rem",
-    color: "#1C733A",
-    fontWeight: "600",
-  },
-  progressBar: {
-    width: "100%",
-    height: "8px",
-    backgroundColor: "#e2e8f0",
-    borderRadius: "4px",
-    overflow: "hidden",
-  },
-  progressFill: {
-    width: "100%",
-    height: "100%",
-    backgroundColor: "#1C733A",
-    borderRadius: "4px",
-  },
-  progressDays: {
-    display: "flex",
-    alignItems: "center",
-    gap: "6px",
-    fontSize: "0.8rem",
-    color: "#666",
-  },
-  statsOverlay: {
-    position: "absolute",
-    bottom: "-20px",
-    right: "-20px",
-    backgroundColor: "#FF0000",
-    color: "#ffffff",
-    padding: "16px",
-    borderRadius: "12px",
-    display: "flex",
-    gap: "24px",
-    boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)",
-    zIndex: 6,
-  },
-  stat: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  statNumber: {
-    fontSize: "1.5rem",
-    fontWeight: "700",
-    lineHeight: "1",
-  },
-  statLabel: {
-    fontSize: "0.7rem",
-    fontWeight: "500",
-    marginTop: "4px",
-  },
-  tickerContainer: {
-    marginTop: "40px",
-    padding: "16px",
-    backgroundColor: "rgba(255, 0, 0, 0.1)",
-    borderRadius: "8px",
-    border: "1px solid rgba(255, 0, 0, 0.2)",
-  },
-  ticker: {
-    display: "flex",
-    alignItems: "center",
-    gap: "16px",
-    overflow: "hidden",
-    position: "relative",
-  },
-  tickerLabel: {
-    fontSize: "0.9rem",
-    fontWeight: "600",
-    color: "#FF0000",
-    flexShrink: 0,
-    backgroundColor: "rgba(0, 0, 0, 0.8)",
-    padding: "4px 8px",
-    borderRadius: "4px",
-    zIndex: 2,
-    position: "relative",
-  },
-  tickerItems: {
-    display: "flex",
-    animation: "tickerAnimation 20s linear infinite",
-    whiteSpace: "nowrap",
-    gap: "60px",
-    position: "absolute",
-    left: "180px",
-  },
+  );
 };
-
 
 export default Banner;
