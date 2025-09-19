@@ -82,7 +82,14 @@ const DashboardSidebar = ({ role }) => {
             <span className="ml-3">{item.name}</span>
           </Link>
         ))}
+
+
       </nav>
+
+      <div className="bottom-0 absolute ">
+        <Link to={'/'}>
+        <button className="w-full flex items-center px-4 py-2 rounded-md hover:bg-gray-800 transition">Home</button></Link>
+      </div>
     </motion.div>
   );
 };
