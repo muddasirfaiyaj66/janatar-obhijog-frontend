@@ -86,7 +86,7 @@ console.log(complaints)
                       : "text-gray-600"
                   }`}
                 >
-                  {complaint.priority}
+                  {complaint.priority}  
                 </span>
               </p>
               <p>
