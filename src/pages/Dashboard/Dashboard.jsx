@@ -54,46 +54,7 @@ const Dashboard = () => {
                     </div>
 
                     {/* Dashboard Content */}
-                    <div className="p-6">
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                            {/* Stats Cards */}
-                            <div className="bg-blue-50 p-4 rounded-lg">
-                                <h3 className="text-lg font-medium text-blue-900">Total Complaints</h3>
-                                <p className="text-3xl font-bold text-blue-600">0</p>
-                            </div>
-                            <div className="bg-yellow-50 p-4 rounded-lg">
-                                <h3 className="text-lg font-medium text-yellow-900">Pending</h3>
-                                <p className="text-3xl font-bold text-yellow-600">0</p>
-                            </div>
-                            <div className="bg-green-50 p-4 rounded-lg">
-                                <h3 className="text-lg font-medium text-green-900">Resolved</h3>
-                                <p className="text-3xl font-bold text-green-600">0</p>
-                            </div>
-                        </div>
-
-                        {/* Quick Actions */}
-                        <div className="space-y-4">
-                            <h3 className="text-lg font-medium text-gray-900">Quick Actions</h3>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <button className="p-4 border border-gray-300 rounded-lg hover:bg-gray-50 text-left">
-                                    <h4 className="font-medium text-gray-900">File New Complaint</h4>
-                                    <p className="text-sm text-gray-600">Submit a new complaint to the authorities</p>
-                                </button>
-                                <button className="p-4 border border-gray-300 rounded-lg hover:bg-gray-50 text-left">
-                                    <h4 className="font-medium text-gray-900">View My Complaints</h4>
-                                    <p className="text-sm text-gray-600">Track the status of your submitted complaints</p>
-                                </button>
-                                <button className="p-4 border border-gray-300 rounded-lg hover:bg-gray-50 text-left">
-                                    <h4 className="font-medium text-gray-900">Update Profile</h4>
-                                    <p className="text-sm text-gray-600">Edit your personal information</p>
-                                </button>
-                                <button className="p-4 border border-gray-300 rounded-lg hover:bg-gray-50 text-left">
-                                    <h4 className="font-medium text-gray-900">Help & Support</h4>
-                                    <p className="text-sm text-gray-600">Get help with using the platform</p>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                   
                 </div>
             </div>
         </div>

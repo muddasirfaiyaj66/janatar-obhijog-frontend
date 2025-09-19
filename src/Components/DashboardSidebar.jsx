@@ -15,9 +15,9 @@ import {
 const navItems = {
   user: [
     { name: "Dashboard", path: "/dashboard/", icon: <Home size={18} /> },
-    { name: "Submit Complaint", path: "/dashboard/submitedcomplaints", icon: <FileText size={18} /> },
+    { name: "All Submited Complaints", path: "/dashboard/submitedcomplaints", icon: <FileText size={18} /> },
     {
-      name: "My Complaints",
+      name: "Submit Complaint",
       path: "/dashboard/myComplaints",
       icon: <FileText size={18} />,
     },
@@ -74,7 +74,7 @@ const DashboardSidebar = ({ role }) => {
       <nav className="flex flex-col mt-4 space-y-2">
         {items.map((item) => (
           <Link
-            key={item.name}
+            key={item.path}
             to={item.path}
             className="flex items-center px-4 py-2 rounded-md hover:bg-gray-800 transition"
           >
