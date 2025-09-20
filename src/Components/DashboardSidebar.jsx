@@ -9,6 +9,7 @@ import {
   BarChart,
   Users,
   Settings,
+  Brain,
 } from "lucide-react";
 
 // Role-based nav items
@@ -28,7 +29,7 @@ const navItems = {
     { name: "Dashboard", path: "/", icon: <Home size={18} /> },
     { name: "Complaints", path: "/dashboard/allComplaints", icon: <FileText size={18} /> },
     { name: "Analytics", path: "/dashboard/analytics", icon: <BarChart size={18} /> },
-
+    { name: "AI Analysis", path: "/ai-analysis", icon: <Brain size={18} /> },
   ],
   superAdmin: [
     { name: "Dashboard", path: "/", icon: <Home size={18} /> },
@@ -43,6 +44,7 @@ const navItems = {
       path: "/dashboard/authManagement",
       icon: <Users size={18} />,
     },
+    { name: "AI Analysis", path: "/ai-analysis", icon: <Brain size={18} /> },
     // {
     //   name: "System Analytics",
     //   path: "/system-analytics",

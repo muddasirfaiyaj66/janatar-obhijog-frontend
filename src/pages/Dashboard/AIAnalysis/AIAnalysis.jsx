@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 import LoadingSpinner from '../../../Components/loadingSpinner';
 import BatchAnalysisForm from './BatchAnalysisForm';
 import LocationAnalysisForm from './LocationAnalysisForm';
-import { useContext } from 'react';
-import { AuthContext } from '../../../Provider/authProvider';
 import useAIAnalysisService from '../../../services/aiAnalysisService';
 
 /**
@@ -11,7 +9,6 @@ import useAIAnalysisService from '../../../services/aiAnalysisService';
  */
 const AIAnalysis = () => {
     const [activeTab, setActiveTab] = useState('dashboard');
-    const { user } = useContext(AuthContext);
     const [loading, setLoading] = useState(false);
     const [analysisHistory, setAnalysisHistory] = useState([]);
     const [analysisStats, setAnalysisStats] = useState(null);
@@ -25,20 +22,6 @@ const AIAnalysis = () => {
             setLoading(true);
             // For now, we'll just simulate loading
             setTimeout(() => setLoading(false), 500);
-
-            // When backend supports these endpoints, uncomment this code
-            // Promise.all([
-            //     aiAnalysisService.getAnalysisStats(),
-            //     aiAnalysisService.getAnalysisHistory({ page: 1, limit: 1 })
-            // ])
-            // .then(([stats, history]) => {
-            //     setAnalysisStats(stats);
-            //     setLoading(false);
-            // })
-            // .catch(error => {
-            //     console.error('Error fetching dashboard data:', error);
-            //     setLoading(false);
-            // });
         } else if (activeTab === 'history') {
             setLoading(true);
             aiAnalysisService.getAnalysisHistory({ page: currentPage, limit: 10 })
@@ -67,66 +50,66 @@ const AIAnalysis = () => {
     }, [activeTab, currentPage, aiAnalysisService]);
 
     return (
-        <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8 lg:ml-64">
             <div className="max-w-7xl mx-auto">
                 <div className="bg-white shadow-lg rounded-lg overflow-hidden">
                     {/* Header */}
-                    <div className="bg-indigo-600 px-6 py-4">
-                        <h1 className="text-2xl font-bold text-white">
-                            AI Complaint Analysis
+                    <div className="bg-gradient-to-r from-indigo-600 to-purple-600 px-6 py-6">
+                        <h1 className="text-3xl font-bold text-white">
+                            🤖 AI Complaint Analysis
                         </h1>
-                        <p className="text-indigo-100">
-                            Get intelligent insights from citizen complaints
+                        <p className="text-indigo-100 mt-2">
+                            Get intelligent insights from citizen complaints using advanced AI algorithms
                         </p>
                     </div>
 
                     {/* Navigation Tabs */}
-                    <div className="border-b border-gray-200">
-                        <nav className="flex -mb-px">
+                    <div className="border-b border-gray-200 bg-gray-50">
+                        <nav className="flex -mb-px overflow-x-auto">
                             <button
                                 onClick={() => setActiveTab('dashboard')}
-                                className={`py-4 px-6 font-medium text-sm ${activeTab === 'dashboard'
-                                    ? 'border-b-2 border-indigo-500 text-indigo-600'
+                                className={`py-4 px-6 font-medium text-sm whitespace-nowrap ${activeTab === 'dashboard'
+                                    ? 'border-b-2 border-indigo-500 text-indigo-600 bg-white'
                                     : 'text-gray-500 hover:text-gray-700 hover:border-gray-300'
                                     }`}
                             >
-                                Dashboard
+                                📊 Dashboard
                             </button>
                             <button
                                 onClick={() => setActiveTab('batch')}
-                                className={`py-4 px-6 font-medium text-sm ${activeTab === 'batch'
-                                    ? 'border-b-2 border-indigo-500 text-indigo-600'
+                                className={`py-4 px-6 font-medium text-sm whitespace-nowrap ${activeTab === 'batch'
+                                    ? 'border-b-2 border-indigo-500 text-indigo-600 bg-white'
                                     : 'text-gray-500 hover:text-gray-700 hover:border-gray-300'
                                     }`}
                             >
-                                Batch Analysis
+                                📋 Batch Analysis
                             </button>
                             <button
                                 onClick={() => setActiveTab('location')}
-                                className={`py-4 px-6 font-medium text-sm ${activeTab === 'location'
-                                    ? 'border-b-2 border-indigo-500 text-indigo-600'
+                                className={`py-4 px-6 font-medium text-sm whitespace-nowrap ${activeTab === 'location'
+                                    ? 'border-b-2 border-indigo-500 text-indigo-600 bg-white'
                                     : 'text-gray-500 hover:text-gray-700 hover:border-gray-300'
                                     }`}
                             >
-                                Location Analysis
+                                📍 Location Analysis
                             </button>
                             <button
                                 onClick={() => setActiveTab('history')}
-                                className={`py-4 px-6 font-medium text-sm ${activeTab === 'history'
-                                    ? 'border-b-2 border-indigo-500 text-indigo-600'
+                                className={`py-4 px-6 font-medium text-sm whitespace-nowrap ${activeTab === 'history'
+                                    ? 'border-b-2 border-indigo-500 text-indigo-600 bg-white'
                                     : 'text-gray-500 hover:text-gray-700 hover:border-gray-300'
                                     }`}
                             >
-                                Analysis History
+                                📈 Analysis History
                             </button>
                             <button
                                 onClick={() => setActiveTab('statistics')}
-                                className={`py-4 px-6 font-medium text-sm ${activeTab === 'statistics'
-                                    ? 'border-b-2 border-indigo-500 text-indigo-600'
+                                className={`py-4 px-6 font-medium text-sm whitespace-nowrap ${activeTab === 'statistics'
+                                    ? 'border-b-2 border-indigo-500 text-indigo-600 bg-white'
                                     : 'text-gray-500 hover:text-gray-700 hover:border-gray-300'
                                     }`}
                             >
-                                Statistics
+                                📊 Statistics
                             </button>
                         </nav>
                     </div>
