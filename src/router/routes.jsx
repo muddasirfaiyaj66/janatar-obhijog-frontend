@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router";
 import Main from "../layout/Main";
-import SignUp from "../pages/Authentication/SignUp";
+import SignUp from "../pages/Authentication/Signup";
 import SignIn from "../pages/Authentication/Signin";
 import ForgetPassword from "../pages/Authentication/ForgetPassword";
 import ResetPassword from "../pages/Authentication/ResetPassword";
