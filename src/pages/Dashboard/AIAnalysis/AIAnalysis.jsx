@@ -47,7 +47,8 @@ const AIAnalysis = () => {
                     setLoading(false);
                 });
         }
-    }, [activeTab, currentPage, aiAnalysisService]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [activeTab, currentPage]);
 
     return (
         <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8 lg:ml-64">
