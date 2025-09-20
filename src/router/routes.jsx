@@ -22,7 +22,7 @@ import Analytics from "../pages/Admin/Analytics";
 import AllComplaintsSuperAdmin from "../pages/SuperAdmin/AllComplaints";
 import UserManagement from "../pages/SuperAdmin/UserManagement";
 import AuthManagement from "../pages/SuperAdmin/AuthorityManagement";
-import AllComplainWatch from "../pages/Home/AllComplainWatch/AllComplainWatch";
+import AllComplainWatch from "../pages/AllComplain/AllComplain";
 
 const AppRoutes = () => (
   <Routes>

@@ -25,16 +25,37 @@
     "reportIssue": "Report an Issue",
     "learnMore": "Learn More",
     "banner": {
+      "officialPlatform": "Official Government Platform",
       "stats": {
         "complaintsResolved": "Complaints Resolved",
         "governmentDepartments": "Government Departments",
-        "satisfactionRate": "Satisfaction Rate"
+        "satisfactionRate": "Satisfaction Rate",
+        "issuesResolved": "Issues Resolved"
       },
       "demo": {
+        "department": "Public Works Department",
         "resolved": "Resolved",
-        "cardTitle": "Road Repair Request",
-        "cardDescription": "Potholes on Main Street causing traffic issues",
-        "completed": "Completed in 7 days"
+        "complaintId": "COMPLAINT ID: #JO-2024-001",
+        "cardTitle": "Road Repair Completed",
+        "location": "Main Street, Dhaka - Ward 15",
+        "cardDescription": "Potholes on Main Street have been filled and the road is now safe for travel. Quality inspection completed.",
+        "timeline": {
+          "reported": "Jan 15, 2024",
+          "issueReported": "Issue Reported",
+          "review": "Jan 18, 2024",
+          "underReview": "Under Review",
+          "resolved": "Jan 25, 2024",
+          "resolvedStatus": "Resolved"
+        },
+        "resolutionProgress": "Resolution Progress",
+        "completed": "Resolved in 10 days"
+      },
+      "recentlyResolved": "Recently Resolved:",
+      "ticker": {
+        "waterLogging": "Water logging in Mirpur - Resolved",
+        "streetLight": "Street light repair in Gulshan - Completed",
+        "garbageCollection": "Garbage collection in Uttara - Improved",
+        "trafficSignal": "Traffic signal in Dhanmondi - Fixed"
       }
     },
     "features": {
@@ -46,6 +67,8 @@
       "trackingDesc": "Track the status of your complaints",
       "transparency": "Transparency",
       "transparencyDesc": "See all public complaints and their resolution status",
+      "officialResponse": "Official Response",
+      "officialResponseDesc": "Government-guaranteed action",
       "smartAIRouting": "Smart AI Routing",
       "smartAIRoutingDesc": "Our AI automatically routes your complaint to the right department for faster resolution.",
       "locationBasedReporting": "Location-Based Reporting",

@@ -25,16 +25,37 @@
     "reportIssue": "সমস্যা রিপোর্ট করুন",
     "learnMore": "আরো জানুন",
     "banner": {
+      "officialPlatform": "সরকারি প্ল্যাটফর্ম",
       "stats": {
         "complaintsResolved": "অভিযোগ সমাধান",
         "governmentDepartments": "সরকারি বিভাগ",
-        "satisfactionRate": "সন্তুষ্টির হার"
+        "satisfactionRate": "সন্তুষ্টির হার",
+        "issuesResolved": "সমস্যা সমাধান"
       },
       "demo": {
+        "department": "গণপূর্ত বিভাগ",
         "resolved": "সমাধানকৃত",
-        "cardTitle": "রাস্তা মেরামতের অনুরোধ",
-        "cardDescription": "প্রধান রাস্তায় গর্ত যানজট সৃষ্টি করছে",
-        "completed": "৭ দিনে সম্পন্ন"
+        "complaintId": "অভিযোগ আইডি: #JO-2024-001",
+        "cardTitle": "রাস্তা মেরামত সম্পন্ন",
+        "location": "মেইন স্ট্রিট, ঢাকা - ওয়ার্ড ১৫",
+        "cardDescription": "মেইন স্ট্রিটের গর্তগুলি ভরাট করা হয়েছে এবং রাস্তাটি এখন চলাচলের জন্য নিরাপদ। মান নিয়ন্ত্রণ পরিদর্শন সম্পন্ন।",
+        "timeline": {
+          "reported": "১৫ জানুয়ারি, ২০২৪",
+          "issueReported": "সমস্যা রিপোর্ট",
+          "review": "১৮ জানুয়ারি, ২০২৪",
+          "underReview": "পর্যালোচনাধীন",
+          "resolved": "২৫ জানুয়ারি, ২০২৪",
+          "resolvedStatus": "সমাধানকৃত"
+        },
+        "resolutionProgress": "সমাধানের অগ্রগতি",
+        "completed": "১০ দিনে সমাধান"
+      },
+      "recentlyResolved": "সম্প্রতি সমাধান:",
+      "ticker": {
+        "waterLogging": "মিরপুরে জলাবদ্ধতা - সমাধান",
+        "streetLight": "গুলশানে রাস্তার বাতি মেরামত - সম্পন্ন",
+        "garbageCollection": "উত্তরায় আবর্জনা সংগ্রহ - উন্নত",
+        "trafficSignal": "ধানমন্ডিতে ট্রাফিক সিগন্যাল - ঠিক"
       }
     },
     "features": {
@@ -46,6 +67,8 @@
       "trackingDesc": "আপনার অভিযোগের অবস্থা ট্র্যাক করুন",
       "transparency": "স্বচ্ছতা",
       "transparencyDesc": "সকল পাবলিক অভিযোগ এবং তাদের সমাধানের অবস্থা দেখুন",
+      "officialResponse": "সরকারি সাড়া",
+      "officialResponseDesc": "সরকার নিশ্চিত পদক্ষেপ",
       "smartAIRouting": "স্মার্ট এআই রাউটিং",
       "smartAIRoutingDesc": "আমাদের এআই স্বয়ংক্রিয়ভাবে আপনার অভিযোগ সঠিক বিভাগে পাঠায় দ্রুত সমাধানের জন্য।",
       "locationBasedReporting": "অবস্থান-ভিত্তিক রিপোর্টিং",
